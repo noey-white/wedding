@@ -684,8 +684,10 @@ const CONFIG = {
         en.target.classList.add('in'); io.unobserve(en.target);
         if (en.target.classList.contains('write')) rvaGo();
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
     els.forEach((el) => io.observe(el));
+    const atEnd = () => { if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) document.querySelectorAll('.rv:not(.in), .rvc:not(.in)').forEach((el) => el.classList.add('in')); };
+    window.addEventListener('scroll', atEnd, { passive: true });
   }
 })();
 </script>
