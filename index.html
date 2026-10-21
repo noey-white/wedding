@@ -253,8 +253,12 @@ img{max-width:100%}
   <div class="sec-h rv"><span class="sec-n">04</span><div style="flex:1;min-width:0"><div class="sec-en">Location</div><h2><span class="hl"><span class="hl-bar" aria-hidden="true"></span><span class="hl-txt">오시는 길</span></span></h2></div></div>
   <div class="rv" style="font-size:24px;letter-spacing:-.02em;margin-top:28px">노블발렌티 대치</div>
   <div class="rv d1 sans" style="font-size:14px;color:#3A332E;margin-top:6px">서울시 강남구 영동대로 325 S TOWER 지하 1층</div>
-  <div class="rv" style="height:240px;border-radius:20px;margin-top:20px;overflow:hidden;background:#DDD5CB;border:1px solid #D9CFC4">
-    <iframe title="노블발렌티 대치 위치 지도" src="https://www.google.com/maps?q=%EC%84%9C%EC%9A%B8%20%EA%B0%95%EB%82%A8%EA%B5%AC%20%EC%98%81%EB%8F%99%EB%8C%80%EB%A1%9C%20325%20%EB%85%B8%EB%B8%94%EB%B0%9C%EB%A0%8C%ED%8B%B0%20%EB%8C%80%EC%B9%98&amp;hl=ko&amp;z=16&amp;output=embed" width="100%" height="100%" style="border:0;display:block" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+  <div class="rv" style="position:relative;height:240px;border-radius:20px;margin-top:20px;overflow:hidden;background:#DDD5CB;border:1px solid #D9CFC4">
+    <div id="kmap" style="position:absolute;inset:0"></div>
+    <a id="mapFallback" class="ph ph3 sans" href="https://map.kakao.com/link/search/%EB%85%B8%EB%B8%94%EB%B0%9C%EB%A0%8C%ED%8B%B0%20%EB%8C%80%EC%B9%98%EC%A0%90" target="_blank" rel="noopener" style="position:absolute;inset:0;flex-direction:column;gap:8px;font-size:13px;text-decoration:none">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3A332E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+      <span>카카오맵에서 위치 보기</span>
+    </a>
   </div>
   <div class="rv d1 sans" style="display:flex;gap:6px;margin-top:12px">
     <a href="https://map.naver.com/p/search/%EB%85%B8%EB%B8%94%EB%B0%9C%EB%A0%8C%ED%8B%B0%20%EB%8C%80%EC%B9%98%EC%A0%90" target="_blank" rel="noopener" style="flex:1;min-height:44px;display:flex;align-items:center;justify-content:center;border:1px solid var(--ink);border-radius:999px;text-decoration:none;font-size:13px">네이버 지도</a>
@@ -634,6 +638,39 @@ const CONFIG = {
     s.crossOrigin = 'anonymous';
     s.onload = () => { try { Kakao.init(CONFIG.kakaoJsKey); } catch (e) {} };
     document.head.appendChild(s);
+  }
+
+
+  /* Kakao map (needs 카카오맵 enabled in Kakao Developers) */
+  if (CONFIG.kakaoJsKey) {
+    const ms = document.createElement('script');
+    ms.src = 'https://dapi.kakao.com/v2/maps/sdk.js?appkey=' + CONFIG.kakaoJsKey + '&autoload=false&libraries=services';
+    ms.onload = () => {
+      try {
+        kakao.maps.load(() => {
+          const el = document.getElementById('kmap');
+          const show = (lat, lng) => {
+            const pos = new kakao.maps.LatLng(lat, lng);
+            const map = new kakao.maps.Map(el, { center: pos, level: 3 });
+            map.setZoomable(false);
+            new kakao.maps.Marker({ map, position: pos });
+            const ov = document.createElement('div');
+            ov.textContent = '노블발렌티 대치';
+            ov.style.cssText = 'background:#221E1B;color:#F2EEE8;font:500 12px SUIT,sans-serif;padding:6px 10px;border-radius:999px;transform:translateY(-46px);white-space:nowrap';
+            new kakao.maps.CustomOverlay({ map, position: pos, content: ov, yAnchor: 1 });
+            document.getElementById('mapFallback').hidden = true;
+          };
+          const ps = new kakao.maps.services.Places();
+          ps.keywordSearch('노블발렌티 대치점', (data, status) => {
+            if (status === kakao.maps.services.Status.OK && data[0]) return show(+data[0].y, +data[0].x);
+            new kakao.maps.services.Geocoder().addressSearch('서울 강남구 영동대로 325', (r, st2) => {
+              if (st2 === kakao.maps.services.Status.OK && r[0]) show(+r[0].y, +r[0].x);
+            });
+          });
+        });
+      } catch (e) {}
+    };
+    document.head.appendChild(ms);
   }
 
   /* Scroll reveal */
