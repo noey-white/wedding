@@ -117,9 +117,9 @@ img{max-width:100%}
 .rvc>*{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
 .rvc.in>*{opacity:1;transform:none}
 .rvc.in>:nth-child(2){transition-delay:.08s}.rvc.in>:nth-child(3){transition-delay:.16s}.rvc.in>:nth-child(4){transition-delay:.24s}.rvc.in>:nth-child(5){transition-delay:.32s}.rvc.in>:nth-child(6){transition-delay:.4s}.rvc.in>:nth-child(7){transition-delay:.48s}.rvc.in>:nth-child(8){transition-delay:.56s}.rvc.in>:nth-child(9){transition-delay:.64s}.rvc.in>:nth-child(10){transition-delay:.72s}
-.wl{display:block;clip-path:inset(0 100% 0 0);transition:clip-path 1s cubic-bezier(.55,0,.35,1)}
+.wl{display:block;clip-path:inset(0 100% 0 0);transition:clip-path .6s cubic-bezier(.55,0,.35,1)}
 .write.in .wl{clip-path:inset(0 0 0 0)}
-.write.in .wl1{transition-delay:.2s}.write.in .wl2{transition-delay:.8s}.write.in .wl3{transition-delay:1.4s}
+.write.in .wl1{transition-delay:.1s}.write.in .wl2{transition-delay:.45s}.write.in .wl3{transition-delay:.8s}
 @keyframes photoIn{from{opacity:0;transform:scale(1.04)}to{opacity:1;transform:none}}
 @keyframes uiIn{to{opacity:1;transform:none}}
 @keyframes toColor{from{filter:grayscale(1)}to{filter:grayscale(0)}}
@@ -148,7 +148,7 @@ img{max-width:100%}
     <div id="ddayBadge" style="min-width:40px;text-align:right;font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--pink)">D-DAY</div>
   </div>
 
-  <h1 class="cover-ui ui1" style="margin:34px 0 0;text-align:center;font-family:'Shine',cursive;font-weight:400;font-size:46px;line-height:1;letter-spacing:.01em">Our forever begins<span style="color:var(--pink)">.</span></h1>
+  <h1 class="cover-ui ui1" style="margin:34px 0 0;text-align:center;font-family:'Shine',cursive;font-weight:400;font-size:46px;line-height:1;letter-spacing:.01em">Our <span style="color:var(--pink)">forever</span> begins<span style="color:var(--pink)">.</span></h1>
 
   <div class="cover-photo"><img class="cover-img" src="../assets/cover.jpg" alt="박주현, 백지연 웨딩 사진" fetchpriority="high"></div>
 
@@ -619,7 +619,7 @@ const CONFIG = {
   }
 
   /* Scroll reveal */
-  const rvaGo = () => setTimeout(() => document.querySelectorAll('.rva').forEach((el) => el.classList.add('in')), 2400);
+  const rvaGo = () => setTimeout(() => document.querySelectorAll('.rva').forEach((el) => el.classList.add('in')), 1500);
   const els = document.querySelectorAll('.rv, .rvc');
   if (!('IntersectionObserver' in window)) { els.forEach((el) => el.classList.add('in')); document.querySelectorAll('.rva').forEach((el) => el.classList.add('in')); }
   else {
