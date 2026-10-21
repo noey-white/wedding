@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>박주현 ♡ 백지연 결혼합니다</title>
+<title>박주현 ♡ 백지연, 저희 결혼합니다</title>
 <meta name="description" content="2027년 12월 12일 일요일 오전 11시 · 노블발렌티 대치">
 <meta property="og:type" content="website">
-<meta property="og:title" content="박주현 ♡ 백지연 결혼합니다">
+<meta property="og:title" content="박주현 ♡ 백지연, 저희 결혼합니다">
 <meta property="og:description" content="2027년 12월 12일 일요일 오전 11시 · 노블발렌티 대치">
 <meta property="og:image" content="https://noey-white.github.io/wedding/assets/og.jpg">
 <meta property="og:image:width" content="1200">
@@ -390,7 +390,7 @@ const CONFIG = {
   kakaoJsKey: '94547a120543709aa8f7e5a4ea7795de',   // 카카오 개발자 JavaScript 키
   sheetApiUrl: 'https://script.google.com/macros/s/AKfycbzZ9ZNl-sh7yvEYwS1o1OTknuyp0a4yLmYuYUzrH8gKOrgkeGtvzJu0NsR02YpVZyAQcQ/exec',   // 구글 Apps Script 웹앱 주소
   wedding: '2027-12-12T11:00:00+09:00',
-  title: '박주현 ♡ 백지연 결혼합니다',
+  title: '박주현 ♡ 백지연, 저희 결혼합니다',
   desc: '2027년 12월 12일 일요일 오전 11시\n노블발렌티 대치',
   address: '서울시 강남구 영동대로 325 S TOWER B1층 노블발렌티 대치점',
   shortNames: '주현 ♡ 지연',
@@ -617,7 +617,7 @@ const CONFIG = {
     if (window.Kakao && Kakao.isInitialized && Kakao.isInitialized()) {
       Kakao.Share.sendDefault({
         objectType: 'feed',
-        content: { title: CONFIG.title, description: CONFIG.desc.replace('\n', ' · '), imageUrl: CONFIG.siteUrl + 'assets/share.jpg', imageWidth: 800, imageHeight: 800, link: { mobileWebUrl: CONFIG.siteUrl, webUrl: CONFIG.siteUrl } },
+        content: { title: CONFIG.title, description: CONFIG.desc, imageUrl: CONFIG.siteUrl + 'assets/share.jpg', imageWidth: 800, imageHeight: 800, link: { mobileWebUrl: CONFIG.siteUrl, webUrl: CONFIG.siteUrl } },
         buttons: [
           { title: '청첩장 보기', link: { mobileWebUrl: CONFIG.siteUrl, webUrl: CONFIG.siteUrl } },
           { title: '오시는 길', link: { mobileWebUrl: CONFIG.siteUrl + '#location', webUrl: CONFIG.siteUrl + '#location' } }
