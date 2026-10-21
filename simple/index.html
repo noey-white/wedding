@@ -104,8 +104,8 @@ img{max-width:100%}
 .acc-panel{background:rgba(255,255,255,.55);border:1px solid rgba(17,17,17,.06);border-radius:14px;padding:2px 16px;margin-bottom:16px}
 .acct-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #EDEDEA}
 .acct-row:last-child{border-bottom:0}
-.copy-btn{flex:none;min-width:52px;height:34px;border-radius:999px;border:1px solid var(--ink);background:transparent;font-size:12px;font-weight:500;padding:0 12px}
-.copy-btn.done{background:var(--ink);color:#fff}
+.copy-btn{flex:none;width:38px;height:38px;border-radius:999px;border:1px solid rgba(227,154,166,.55);background:transparent;display:flex;align-items:center;justify-content:center;padding:0}
+.copy-btn .ok{display:none}.copy-btn.done .ok{display:block}.copy-btn.done .cp{display:none}
 
 /* toast */
 .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;font-size:13px;padding:10px 16px;border-radius:999px;opacity:0;transition:opacity .25s,transform .25s;z-index:120;pointer-events:none;white-space:nowrap}
@@ -195,9 +195,9 @@ img{max-width:100%}
     <div style="text-align:center;border-left:1px solid #333"><div id="cdM" style="font-size:34px;line-height:1;letter-spacing:-.02em">00</div><div style="font-size:11px;letter-spacing:.04em;color:var(--mute);margin-top:10px">분</div></div>
     <div style="text-align:center;border-left:1px solid #333"><div id="cdS" style="color:var(--pink);font-size:34px;line-height:1;letter-spacing:-.02em">00</div><div style="font-size:11px;letter-spacing:.04em;color:var(--mute);margin-top:10px">초</div></div>
   </div>
-  <p class="rv d1" style="font-size:15px;margin:30px 0 0;line-height:1.7;text-align:center;color:#DDDDDA">주현 ♡ 지연의 결혼식이 <b id="ddayText" style="color:var(--pink);font-weight:700"></b></p>
-  <a id="calBtn" class="rv d2" href="#" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:8px;min-height:54px;margin-top:26px;border-radius:999px;border:1px solid #fff;color:#fff;text-decoration:none;font-size:14px;font-weight:700">
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>
+  <p class="rv d1" style="font-size:15px;margin:30px 0 0;line-height:1.7;text-align:center;color:#DDDDDA">주현 ♡ 지연의 결혼식이 <b id="ddayNum" style="color:var(--pink);font-weight:700"></b><span id="ddaySuf" style="color:#fff"></span></p>
+  <a id="calBtn" class="rv d2" href="#" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:8px;min-height:54px;margin-top:26px;border-radius:999px;border:1px solid #fff;color:var(--pink);text-decoration:none;font-size:14px;font-weight:700">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#E39AA6" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>
     <span>내 캘린더에 추가하기</span>
   </a>
 </section>
@@ -384,7 +384,8 @@ const CONFIG = {
     const k = (d) => { const x = new Date(d.getTime() + 9 * 3600e3); return Date.UTC(x.getUTCFullYear(), x.getUTCMonth(), x.getUTCDate()); };
     const dd = Math.round((k(W) - k(now)) / 864e5);
     $('#ddayBadge').textContent = dd > 0 ? 'D-' + dd : dd === 0 ? 'D-DAY' : 'D+' + (-dd);
-    $('#ddayText').textContent = dd > 0 ? dd + '일 남았습니다' : dd === 0 ? '바로 오늘입니다' : (-dd) + '일 지났습니다';
+    $('#ddayNum').textContent = dd > 0 ? dd + '일' : dd === 0 ? '바로 오늘' : (-dd) + '일';
+    $('#ddaySuf').textContent = dd > 0 ? ' 남았습니다' : dd === 0 ? '입니다' : ' 지났습니다';
     const rem = Math.max(0, W - now);
     $('#cdD').textContent = Math.floor(rem / 864e5);
     $('#cdH').textContent = pad(Math.floor(rem / 36e5) % 24);
@@ -550,11 +551,11 @@ const CONFIG = {
     const panel = wrap.querySelector('.acc-panel');
     g.rows.forEach((r) => {
       const row = document.createElement('div'); row.className = 'acct-row';
-      row.innerHTML = '<div style="min-width:0"><div><span style="font-size:12px;color:#8A8A86;margin-right:6px"></span><span style="font-size:15px;font-weight:700"></span></div><div style="font-size:14px;color:#333;margin-top:4px"></div></div><button type="button" class="copy-btn" aria-label="계좌번호 복사">복사</button>';
+      row.innerHTML = '<div style="min-width:0"><div><span style="font-size:12px;font-weight:700;color:#E39AA6;margin-right:6px"></span><span style="font-size:15px;font-weight:700"></span></div><div style="font-size:14px;color:#333;margin-top:4px"></div></div><button type="button" class="copy-btn" aria-label="계좌번호 복사"><svg class="cp" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E39AA6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><svg class="ok" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#E39AA6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button>';
       const sp = row.querySelectorAll('span'); sp[0].textContent = r.role; sp[1].textContent = r.name;
       row.children[0].children[1].textContent = r.bank + ' ' + r.num;
       const b = row.querySelector('.copy-btn');
-      b.addEventListener('click', async () => { if (await copy(r.bank + ' ' + r.num)) { b.classList.add('done'); b.textContent = '복사됨'; toast('계좌번호를 복사했어요'); setTimeout(() => { b.classList.remove('done'); b.textContent = '복사'; }, 1600); } });
+      b.addEventListener('click', async () => { if (await copy(r.bank + ' ' + r.num)) { b.classList.add('done'); toast('계좌번호를 복사했어요'); setTimeout(() => b.classList.remove('done'), 1600); } });
       panel.appendChild(row);
     });
     const head = wrap.querySelector('.acc-head');
