@@ -140,13 +140,13 @@ img{max-width:100%}
 
 <!-- COVER -->
 <section style="position:relative;padding:18px 20px 44px">
-  <div class="cover-ui ui0" style="display:flex;align-items:center;justify-content:space-between">
-    <button type="button" id="bgmBtn" class="bgm on" aria-label="배경 음악 끄기" aria-pressed="true">
+  <div class="cover-ui ui0" style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center">
+    <button type="button" id="bgmBtn" class="bgm on" aria-label="배경 음악 끄기" aria-pressed="true" style="justify-self:start">
       <svg class="ic-on" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>
       <svg class="ic-off" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/><path d="M3 3l18 18"/></svg>
     </button>
     <div style="font-size:11px;font-weight:500;letter-spacing:.32em">2027.12.12</div>
-    <div id="ddayBadge" style="min-width:40px;text-align:right;font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--pink)">D-DAY</div>
+    <div id="ddayBadge" style="justify-self:end;font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--pink);border:1px solid var(--pink);border-radius:999px;padding:6px 12px">D-DAY</div>
   </div>
 
   <h1 class="cover-ui ui1" style="margin:34px 0 0;text-align:center;font-family:'Shine',cursive;font-weight:400;font-size:46px;line-height:1;letter-spacing:.01em">Our <span style="color:var(--pink)">forever</span> begins<span style="color:var(--pink)">.</span></h1>
@@ -161,7 +161,7 @@ img{max-width:100%}
 <!-- 01 INVITATION -->
 <section style="padding:80px 28px 84px;border-top:1px solid var(--line)">
   <div class="sh rv"><div class="no">01 · INVITATION</div><h2>초대합니다</h2><div class="ln"></div></div>
-  <p class="rv write" style="margin:40px 0 0;text-align:center;font-family:'Shine',cursive;font-size:25px;line-height:1.55"><span class="wl wl1">때론 오래된 친구처럼,</span><span class="wl wl2">때론 처음 만나는 사람처럼</span><span class="wl wl3">그 많은 당신을 다 사랑하고 싶습니다.</span></p>
+  <p class="rv write" style="margin:40px 0 0;text-align:center;font-family:'Shine',cursive;font-size:25px;line-height:1.55"><span class="wl wl1">때론 <span style="color:#D97F90">오래된 친구</span>처럼,</span><span class="wl wl2">때론 <span style="color:#D97F90">처음 만나는 사람</span>처럼</span><span class="wl wl3">그 많은 당신을 다 <span style="color:#D97F90">사랑</span>하고 싶습니다.</span></p>
   <div class="rva" style="text-align:center;font-size:12px;color:var(--mute);margin-top:14px">「사랑고백」, 이준호</div>
   <p class="rva" style="margin:44px 0 0;text-align:center;font-size:15px;line-height:2;color:#333">캠퍼스에서 시작된 작은 인연이<br>다섯 번의 봄을 지나 평생의 약속이 되었습니다.<br>기쁜 날, 함께 축하해 주시면 감사하겠습니다.</p>
   <div class="rva" style="margin-top:52px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)">
@@ -223,7 +223,7 @@ img{max-width:100%}
     <button type="button" id="addrBtn" class="btn-o" style="flex:1;background:var(--ink);color:#fff">주소 복사</button>
   </div>
   <div class="rv" style="margin-top:36px;border-top:1px solid var(--ink)">
-    <div style="display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)"><div style="width:52px;flex:none;font-size:12px;font-weight:700;padding-top:2px">지하철</div><div style="font-size:14px;line-height:1.7;letter-spacing:-.9px;color:#333">2호선 삼성역 3번 출구 30m 전방에서 셔틀버스 운행<br><span style="color:var(--mute)">도보 이용 시 약 10분</span></div></div>
+    <div style="display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)"><div style="width:52px;flex:none;font-size:12px;font-weight:700;padding-top:2px">지하철</div><div style="font-size:14px;line-height:1.7;letter-spacing:-.9px;color:#333">2호선 삼성역 3번 출구 30m 전방에서 셔틀버스 운행<br><span style="color:var(--mute)">도보 이동 시 약 10분</span></div></div>
     <div style="display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)"><div style="width:52px;flex:none;font-size:12px;font-weight:700;padding-top:2px">버스</div><div style="font-size:14px;line-height:1.7;letter-spacing:-.9px;color:#333">휘문고교 사거리 정류장 (ID 23-245)<br><span style="color:var(--mute)">간선 343, 401 · 지선 4319<br>마을 강남01, 강남06 · 일반 11-3<br>직행 500-2, 9407, 9507, 9607 · 심야 500-2N</span></div></div>
     <div style="display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)"><div style="width:52px;flex:none;font-size:12px;font-weight:700;padding-top:2px">자가용</div><div style="font-size:14px;line-height:1.7;letter-spacing:-.9px;color:#333">'노블발렌티 대치점' 또는 '영동대로 325' 검색<br><span style="color:var(--mute);font-size:13px"><b style="color:var(--ink);font-weight:500">경부고속도로</b> 양재IC → 양재 방면 우측 → 개포3·4단지 삼거리(대치역 방면 좌회전) → 은마아파트 → 대치우성아파트 좌회전<br><b style="color:var(--ink);font-weight:500">서울 서부·강북</b> 영동대교 남단 경기고교사거리 방면 → 봉은사역 → 삼성역 직진<br><b style="color:var(--ink);font-weight:500">서울 동남부</b> 삼성역(무역센터) 교차로 → 학여울역(SETEC) 방향 우회전</span></div></div>
     <div style="display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--ink)"><div style="width:52px;flex:none;font-size:12px;font-weight:700;padding-top:2px">주차</div><div style="font-size:14px;line-height:1.7;letter-spacing:-.9px;color:#333">기본 2시간 무료</div></div>
