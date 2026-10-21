@@ -43,7 +43,8 @@ img{max-width:100%}
 .bgm{width:40px;height:40px;border-radius:999px;border:1px solid var(--ink);background:transparent;display:flex;align-items:center;justify-content:center;padding:0;transition:background .2s}
 .bgm.on{background:var(--ink)}
 .bgm .ic-off{display:none}.bgm:not(.on) .ic-on{display:none}.bgm:not(.on) .ic-off{display:block}
-.cover-photo{position:relative;margin-top:24px;aspect-ratio:4/5;overflow:hidden;background:#E2E2DF}
+.cover-photo{position:relative;margin-top:24px;aspect-ratio:4/5;overflow:hidden;background:#E2E2DF;animation:leafIn 1.3s cubic-bezier(.6,0,.2,1) 1s both}
+@keyframes leafIn{from{border-radius:0}to{border-radius:96px 0 96px 0}}
 .cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block;filter:grayscale(1)}
 
 /* gallery */
@@ -126,7 +127,7 @@ img{max-width:100%}
 .cover-img{animation:photoIn 1.6s cubic-bezier(.2,.7,.2,1) .2s both,toColor 2.4s ease 1.3s both}
 .cover-ui{opacity:0;transform:translateY(12px);animation:uiIn .9s cubic-bezier(.2,.7,.2,1) forwards}
 .ui0{animation-delay:.1s}.ui1{animation-delay:.9s}.ui2{animation-delay:1.2s}.ui3{animation-delay:1.45s}.ui4{animation-delay:1.7s}
-@media (prefers-reduced-motion:reduce){.cover-img{filter:none !important}.rv,.rva,.rvc>*,.cover-img,.cover-ui{opacity:1 !important;transform:none !important;animation:none !important;transition:none !important}.wl{clip-path:none !important;transition:none !important}.cal.on span{transition:none !important}}
+@media (prefers-reduced-motion:reduce){.cover-photo{animation:none !important;border-radius:96px 0 96px 0}.cover-img{filter:none !important}.rv,.rva,.rvc>*,.cover-img,.cover-ui{opacity:1 !important;transform:none !important;animation:none !important;transition:none !important}.wl{clip-path:none !important;transition:none !important}.cal.on span{transition:none !important}}
 </style>
 </head>
 <body>
@@ -150,7 +151,7 @@ img{max-width:100%}
 
   <h1 class="cover-ui ui1" style="margin:34px 0 0;text-align:center;font-family:'Shine',cursive;font-weight:400;font-size:46px;line-height:1;letter-spacing:.01em">Our <span style="color:var(--pink)">forever</span> begins<span style="color:var(--pink)">.</span></h1>
 
-  <div class="cover-photo"><img class="cover-img" src="../assets/cover.jpg" alt="박주현, 백지연 웨딩 사진" fetchpriority="high"><div class="cover-ui ui2" aria-hidden="true" style="position:absolute;inset:8px;border:1px solid rgba(255,255,255,.9);pointer-events:none"></div></div>
+  <div class="cover-photo"><img class="cover-img" src="../assets/cover.jpg" alt="박주현, 백지연 웨딩 사진" fetchpriority="high"></div>
 
   <div class="cover-ui ui2" style="margin-top:30px;text-align:center;font-family:'Shine',cursive;font-size:30px;line-height:1.2">박주현 <span style="font-size:22px;color:var(--pink);margin:0 6px">그리고</span> 백지연</div>
   <div class="cover-ui ui3" aria-hidden="true" style="width:1px;height:26px;background:var(--pink);margin:18px auto"></div>
@@ -184,15 +185,15 @@ img{max-width:100%}
     <div style="font-size:14px;color:#BDBDB9;margin-top:14px;letter-spacing:.02em">2027년 · 일요일 오전 11시</div>
   </div>
   <div class="rv calwrap" style="margin-top:36px;border-top:1px solid #333;border-bottom:1px solid #333;padding:16px 0 10px">
-    <div style="font-size:12px;font-weight:500;letter-spacing:.24em;text-align:center;margin-bottom:10px">DECEMBER 2027</div>
-    <div aria-hidden="true" style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));font-size:10px;letter-spacing:.1em;color:var(--mute);text-align:center;padding-bottom:6px"><div>SUN</div><div>MON</div><div>TUE</div><div>WED</div><div>THU</div><div>FRI</div><div>SAT</div></div>
+    <div style="font-size:12px;font-weight:500;letter-spacing:.06em;text-align:center;margin-bottom:10px">2027년 12월</div>
+    <div aria-hidden="true" style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr));font-size:11px;color:var(--mute);text-align:center;padding-bottom:6px"><div>일</div><div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div>토</div></div>
     <div id="calGrid" style="display:grid;grid-template-columns:repeat(7,minmax(0,1fr))"></div>
   </div>
   <div class="rv" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:34px" aria-label="예식까지 남은 시간">
-    <div style="text-align:center"><div id="cdD" style="font-size:34px;line-height:1;letter-spacing:-.02em">0</div><div style="font-size:10px;letter-spacing:.24em;color:var(--mute);margin-top:10px">DAYS</div></div>
-    <div style="text-align:center;border-left:1px solid #333"><div id="cdH" style="font-size:34px;line-height:1;letter-spacing:-.02em">00</div><div style="font-size:10px;letter-spacing:.24em;color:var(--mute);margin-top:10px">HOURS</div></div>
-    <div style="text-align:center;border-left:1px solid #333"><div id="cdM" style="font-size:34px;line-height:1;letter-spacing:-.02em">00</div><div style="font-size:10px;letter-spacing:.24em;color:var(--mute);margin-top:10px">MIN</div></div>
-    <div style="text-align:center;border-left:1px solid #333"><div id="cdS" style="color:var(--pink);font-size:34px;line-height:1;letter-spacing:-.02em">00</div><div style="font-size:10px;letter-spacing:.24em;color:var(--mute);margin-top:10px">SEC</div></div>
+    <div style="text-align:center"><div id="cdD" style="font-size:34px;line-height:1;letter-spacing:-.02em">0</div><div style="font-size:11px;letter-spacing:.04em;color:var(--mute);margin-top:10px">일</div></div>
+    <div style="text-align:center;border-left:1px solid #333"><div id="cdH" style="font-size:34px;line-height:1;letter-spacing:-.02em">00</div><div style="font-size:11px;letter-spacing:.04em;color:var(--mute);margin-top:10px">시간</div></div>
+    <div style="text-align:center;border-left:1px solid #333"><div id="cdM" style="font-size:34px;line-height:1;letter-spacing:-.02em">00</div><div style="font-size:11px;letter-spacing:.04em;color:var(--mute);margin-top:10px">분</div></div>
+    <div style="text-align:center;border-left:1px solid #333"><div id="cdS" style="color:var(--pink);font-size:34px;line-height:1;letter-spacing:-.02em">00</div><div style="font-size:11px;letter-spacing:.04em;color:var(--mute);margin-top:10px">초</div></div>
   </div>
   <p class="rv d1" style="font-size:15px;margin:30px 0 0;line-height:1.7;text-align:center;color:#DDDDDA">주현 ♡ 지연의 결혼식이 <b id="ddayText" style="color:var(--pink);font-weight:700"></b></p>
   <a id="calBtn" class="rv d2" href="#" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:8px;min-height:54px;margin-top:26px;border-radius:999px;border:1px solid #fff;color:#fff;text-decoration:none;font-size:14px;font-weight:700">
@@ -221,10 +222,10 @@ img{max-width:100%}
     <button type="button" id="addrBtn" class="btn-o" style="flex:1;background:var(--ink);color:#fff">주소 복사</button>
   </div>
   <div class="rv" style="margin-top:36px;border-top:1px solid var(--ink)">
-    <div style="display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)"><div style="width:52px;flex:none;font-size:12px;font-weight:700;padding-top:2px">지하철</div><div style="font-size:14px;line-height:1.7;letter-spacing:-.3px;color:#333">2호선 삼성역 3번 출구 30m 전방에서 셔틀버스 운행<br><span style="color:var(--mute)">도보 이용 시 약 10분</span></div></div>
-    <div style="display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)"><div style="width:52px;flex:none;font-size:12px;font-weight:700;padding-top:2px">버스</div><div style="font-size:14px;line-height:1.7;letter-spacing:-.3px;color:#333">휘문고교 사거리 정류장 (ID 23-245)<br><span style="color:var(--mute)">간선 343, 401 · 지선 4319<br>마을 강남01, 강남06 · 일반 11-3<br>직행 500-2, 9407, 9507, 9607 · 심야 500-2N</span></div></div>
-    <div style="display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)"><div style="width:52px;flex:none;font-size:12px;font-weight:700;padding-top:2px">자가용</div><div style="font-size:14px;line-height:1.7;letter-spacing:-.3px;color:#333">'노블발렌티 대치점' 또는 '영동대로 325' 검색<br><span style="color:var(--mute);font-size:13px"><b style="color:var(--ink);font-weight:500">경부고속도로</b> 양재IC → 양재 방면 우측 → 개포3·4단지 삼거리(대치역 방면 좌회전) → 은마아파트 → 대치우성아파트 좌회전<br><b style="color:var(--ink);font-weight:500">서울 서부·강북</b> 영동대교 남단 경기고교사거리 방면 → 봉은사역 → 삼성역 직진<br><b style="color:var(--ink);font-weight:500">서울 동남부</b> 삼성역(무역센터) 교차로 → 학여울역(SETEC) 방향 우회전</span></div></div>
-    <div style="display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--ink)"><div style="width:52px;flex:none;font-size:12px;font-weight:700;padding-top:2px">주차</div><div style="font-size:14px;line-height:1.7;color:#333">기본 2시간 무료</div></div>
+    <div style="display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)"><div style="width:52px;flex:none;font-size:12px;font-weight:700;padding-top:2px">지하철</div><div style="font-size:14px;line-height:1.7;letter-spacing:-.9px;color:#333">2호선 삼성역 3번 출구 30m 전방에서 셔틀버스 운행<br><span style="color:var(--mute)">도보 이용 시 약 10분</span></div></div>
+    <div style="display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)"><div style="width:52px;flex:none;font-size:12px;font-weight:700;padding-top:2px">버스</div><div style="font-size:14px;line-height:1.7;letter-spacing:-.9px;color:#333">휘문고교 사거리 정류장 (ID 23-245)<br><span style="color:var(--mute)">간선 343, 401 · 지선 4319<br>마을 강남01, 강남06 · 일반 11-3<br>직행 500-2, 9407, 9507, 9607 · 심야 500-2N</span></div></div>
+    <div style="display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)"><div style="width:52px;flex:none;font-size:12px;font-weight:700;padding-top:2px">자가용</div><div style="font-size:14px;line-height:1.7;letter-spacing:-.9px;color:#333">'노블발렌티 대치점' 또는 '영동대로 325' 검색<br><span style="color:var(--mute);font-size:13px"><b style="color:var(--ink);font-weight:500">경부고속도로</b> 양재IC → 양재 방면 우측 → 개포3·4단지 삼거리(대치역 방면 좌회전) → 은마아파트 → 대치우성아파트 좌회전<br><b style="color:var(--ink);font-weight:500">서울 서부·강북</b> 영동대교 남단 경기고교사거리 방면 → 봉은사역 → 삼성역 직진<br><b style="color:var(--ink);font-weight:500">서울 동남부</b> 삼성역(무역센터) 교차로 → 학여울역(SETEC) 방향 우회전</span></div></div>
+    <div style="display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--ink)"><div style="width:52px;flex:none;font-size:12px;font-weight:700;padding-top:2px">주차</div><div style="font-size:14px;line-height:1.7;letter-spacing:-.9px;color:#333">기본 2시간 무료</div></div>
   </div>
 </section>
 
