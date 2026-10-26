@@ -165,6 +165,29 @@ html.intro-on .cover-ui,html.intro-on .cover-img,html.intro-on .cover-photo{anim
 .pv{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:350;display:flex;gap:4px;padding:5px;border-radius:999px;background:rgba(17,17,17,.88);box-shadow:0 6px 18px rgba(0,0,0,.2)}
 .pv a{font:700 12px SUIT,sans-serif;color:#bbb;text-decoration:none;padding:8px 11px;border-radius:999px;white-space:nowrap}
 .pv a.on{background:#E39AA6;color:#111}
+
+/* palettes */
+#intro.p1{background-color:#F4F1EB}#intro.p1.out{background-color:rgba(244,241,235,0)}
+#intro.p1 .drop{background:#E39AA6;box-shadow:0 0 8px rgba(227,154,166,.55)}
+#intro.p1 .ring{animation-name:rip1;border-width:1.7px;box-shadow:0 0 10px rgba(227,154,166,.3)}
+@keyframes rip1{0%{opacity:1;transform:scale(.05);border-color:#DD8C9B}50%{border-color:#E8AAB4}100%{opacity:0;transform:scale(var(--s,3));border-color:#F6DCE0}}
+#intro.p1 .glow{background:radial-gradient(circle,rgba(255,255,255,.95) 0%,rgba(240,200,206,.35) 38%,rgba(240,200,206,0) 70%)}
+#intro.p1 .ttl{color:#D97F90;text-shadow:0 0 14px rgba(255,255,255,.9)}
+#intro.p1 .skip{color:rgba(17,17,17,.3)}
+#intro.p2{background-color:#1F1B19}#intro.p2.out{background-color:rgba(31,27,25,0)}
+#intro.p2 .ring{animation-name:rip2}
+@keyframes rip2{0%{opacity:.95;transform:scale(.05);border-color:#E39AA6}50%{border-color:#EFCFC9}100%{opacity:0;transform:scale(var(--s,3));border-color:#F4EDE3}}
+#intro.p2 .glow{background:radial-gradient(circle,rgba(244,237,227,.18) 0%,rgba(227,154,166,.18) 38%,rgba(227,154,166,0) 70%)}
+#intro.p2 .ttl{color:#F4EDE3;text-shadow:0 0 16px rgba(244,237,227,.25)}
+#intro.p2 .ttl .w:not(.ink),#intro.p2 .ttl .ink span:last-child{color:#E39AA6}
+#intro.p3{background-color:#F3E4E0}#intro.p3.out{background-color:rgba(243,228,224,0)}
+#intro.p3 .drop{background:#D97F90;box-shadow:0 0 8px rgba(217,127,144,.5)}
+#intro.p3 .ring{animation-name:rip3;border-width:1.8px;box-shadow:0 0 12px rgba(255,255,255,.7),inset 0 0 8px rgba(255,255,255,.4)}
+@keyframes rip3{0%{opacity:.95;transform:scale(.05);border-color:#D97F90}50%{border-color:#F6EDE6}100%{opacity:0;transform:scale(var(--s,3));border-color:#FFFDF9}}
+#intro.p3 .glow{background:radial-gradient(circle,rgba(255,253,249,.9) 0%,rgba(255,253,249,.35) 40%,rgba(255,253,249,0) 70%)}
+#intro.p3 .ttl{color:#C46A7C;text-shadow:0 0 14px rgba(255,253,249,.9)}
+#intro.p3 .skip{color:rgba(17,17,17,.3)}
+.pv.c{bottom:62px}
 </style>
 </head>
 <body>
@@ -173,6 +196,7 @@ html.intro-on .cover-ui,html.intro-on .cover-img,html.intro-on .cover-photo{anim
   <p class="ttl"><span class="w ink">Our</span> <span class="w">forever</span> <span class="w ink">begins<span>.</span></span></p>
   <div class="skip">TAP TO SKIP</div>
 </div>
+<nav class="pv c" aria-label="색 조합"><a data-c="0" href="?v=A&c=0">기존 블랙</a><a data-c="1" href="?v=A&c=1">① 아이보리</a><a data-c="2" href="?v=A&c=2">② 웜차콜</a><a data-c="3" href="?v=A&c=3">③ 블러시</a></nav>
 <nav class="pv" aria-label="인트로 시안 선택"><a href="?v=A">A 번짐</a><a href="?v=B">B 파문</a><a href="?v=C">C 쓰기</a><a href="?v=D">D 한 단어씩</a><a href="#" onclick="location.reload();return false">↻</a></nav>
 
 <div class="page">
@@ -688,8 +712,11 @@ const CONFIG = {
 /* ===== intro (preview) ===== */
 (function () {
   const root = document.documentElement, intro = document.getElementById('intro');
-  const V = (new URLSearchParams(location.search).get('v') || 'D').toUpperCase();
-  document.querySelectorAll('.pv a').forEach((a) => { if (a.getAttribute('href') === '?v=' + V) a.classList.add('on'); });
+  const Q = new URLSearchParams(location.search);
+  const V = (Q.get('v') || 'A').toUpperCase(), C = Q.get('c') || '1';
+  document.querySelectorAll('.pv:not(.c) a').forEach((a) => { if (a.getAttribute('href') === '?v=' + V) { a.classList.add('on'); a.setAttribute('href', '?v=' + V + '&c=' + C); } else if (a.getAttribute('href').startsWith('?v=')) a.setAttribute('href', a.getAttribute('href') + '&c=' + C); });
+  document.querySelectorAll('.pv.c a').forEach((a) => { a.setAttribute('href', '?v=' + V + '&c=' + a.dataset.c); if (a.dataset.c === C) a.classList.add('on'); });
+  if (C !== '0') intro.classList.add('p' + C);
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) { intro.remove(); return; }
   root.classList.add('intro-on');
   try { history.scrollRestoration = 'manual'; } catch (e) {}
