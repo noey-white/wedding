@@ -137,11 +137,12 @@ html.intro-on .cover-ui,html.intro-on .cover-img,html.intro-on .cover-photo{anim
 #intro.out{background-color:rgba(244,241,235,0)}
 #intro .fx{position:absolute;inset:0;transition:opacity .5s ease}
 #intro.out .fx{opacity:0}
-#intro .drop{position:absolute;width:9px;height:12px;margin:-6px 0 0 -4.5px;background:#E39AA6;border-radius:50% 50% 50% 50% / 62% 62% 38% 38%;box-shadow:0 0 8px rgba(227,154,166,.55);opacity:0;animation:dropFall .38s cubic-bezier(.55,0,1,.45) forwards,dropHit .14s ease-out .38s forwards}
-@keyframes dropFall{0%{opacity:0;transform:translateY(-34vh) scaleY(1.4)}15%{opacity:1}100%{opacity:1;transform:translateY(0) scaleY(1.2)}}
-@keyframes dropHit{0%{opacity:1;transform:scale(1.8,.35)}100%{opacity:0;transform:scale(2.6,.1)}}
-#intro .ring{position:absolute;width:100px;height:100px;margin:-50px 0 0 -50px;border-radius:50%;border:1.7px solid #DD8C9B;box-shadow:0 0 10px rgba(227,154,166,.3);opacity:0;animation:ripple 1.5s cubic-bezier(.15,.6,.3,1) forwards}
-@keyframes ripple{0%{opacity:1;transform:scale(.05);border-color:#DD8C9B}50%{border-color:#E8AAB4}100%{opacity:0;transform:scale(var(--s,3));border-color:#F6DCE0}}
+#intro .drop{position:absolute;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:radial-gradient(circle at 38% 35%,#F6D3D9 0%,#E39AA6 55%,#D98494 100%);box-shadow:0 0 10px rgba(227,154,166,.45);opacity:0;animation:dropIn .62s forwards}
+@keyframes dropIn{0%{opacity:0;transform:scale(3.4);filter:blur(4px);animation-timing-function:cubic-bezier(.55,0,.85,.4)}12%{opacity:.85}68%{opacity:1;transform:scale(1);filter:blur(0);animation-timing-function:cubic-bezier(.2,.7,.3,1)}100%{opacity:0;transform:scale(.15)}}
+#intro .sp{position:absolute;width:4px;height:4px;margin:-2px 0 0 -2px;border-radius:50%;background:#E39AA6;opacity:0;animation:spray .55s cubic-bezier(.15,.75,.35,1) forwards}
+@keyframes spray{0%{opacity:0;transform:translate(0,0) scale(1)}8%{opacity:.9}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.3)}}
+#intro .ring{position:absolute;width:100px;height:100px;margin:-50px 0 0 -50px;border-radius:50%;border:1.7px solid #DD8C9B;box-shadow:0 0 10px rgba(227,154,166,.3);opacity:0;animation:ripple 1.7s cubic-bezier(.08,.65,.3,1) forwards}
+@keyframes ripple{0%{opacity:0;transform:scale(.1);border-color:#DD8C9B}6%{opacity:1}50%{border-color:#E8AAB4}100%{opacity:0;transform:scale(var(--s,3));border-color:#F6DCE0}}
 #intro .glow{position:absolute;width:260px;height:260px;margin:-130px 0 0 -130px;border-radius:50%;background:radial-gradient(circle,rgba(244,241,235,1) 0%,rgba(244,241,235,1) 22%,rgba(236,190,198,.28) 48%,rgba(236,190,198,0) 70%);opacity:0;animation:glow 1.6s ease-out forwards}
 @keyframes glow{0%{opacity:0;transform:scale(.3)}30%{opacity:1}100%{opacity:0;transform:scale(1.3)}}
 #intro .ttl{position:absolute;left:0;right:0;top:var(--cy);margin:0;text-align:center;font-family:'Shine',cursive;font-weight:400;font-size:46px;line-height:1;letter-spacing:.01em;color:#E39AA6;white-space:nowrap;transform:translateY(-50%) scale(1.12);visibility:hidden}
@@ -694,11 +695,16 @@ const CONFIG = {
   let done = false; const timers = [];
   const at = (ms, fn) => timers.push(setTimeout(fn, ms));
   function splash(x, y, big) {
-    const d = document.createElement('div'); d.className = 'drop'; d.style.left = x + 'px'; d.style.top = y + 'px'; fx.appendChild(d);
-    at(380, () => {
-      const g = document.createElement('div'); g.className = 'glow'; g.style.left = x + 'px'; g.style.top = y + 'px'; if (!big) g.style.transform = 'scale(.7)'; fx.appendChild(g);
-      [0, 170].forEach((dl, k) => { const r = document.createElement('div'); r.className = 'ring'; r.style.left = x + 'px'; r.style.top = y + 'px'; r.style.setProperty('--s', big ? (k ? 4.2 : 3) : (k ? 2.6 : 1.9)); r.style.animationDelay = dl / 1000 + 's'; fx.appendChild(r); });
-    });
+    const HIT = 0.42; // seconds until the drop touches the surface
+    const mk = (cls, extra) => { const e = document.createElement('div'); e.className = cls; e.style.left = x + 'px'; e.style.top = y + 'px'; if (extra) extra(e); fx.appendChild(e); return e; };
+    mk('glow', (g) => { g.style.animationDelay = (HIT - 0.02) + 's'; if (!big) g.style.transform = 'scale(.7)'; });
+    [0, 0.17].forEach((dl, k) => mk('ring', (r) => { r.style.setProperty('--s', big ? (k ? 4.2 : 3) : (k ? 2.6 : 1.9)); r.style.animationDelay = (HIT - 0.03 + dl) + 's'; }));
+    const n = big ? 7 : 5;
+    for (let j = 0; j < n; j++) {
+      const ang = (j / n) * Math.PI * 2 + Math.random() * 0.6, dist = (big ? 22 : 15) + Math.random() * (big ? 14 : 8);
+      mk('sp', (e) => { e.style.setProperty('--dx', Math.cos(ang) * dist + 'px'); e.style.setProperty('--dy', Math.sin(ang) * dist + 'px'); e.style.animationDelay = HIT + 's'; if (!big) e.style.width = e.style.height = '3px'; });
+    }
+    mk('drop');
   }
   function finish(fast) {
     if (done) return; done = true; timers.forEach(clearTimeout);
