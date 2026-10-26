@@ -128,9 +128,38 @@ img{max-width:100%}
 .cover-ui{opacity:0;transform:translateY(12px);animation:uiIn .9s cubic-bezier(.2,.7,.2,1) forwards}
 .ui0{animation-delay:.1s}.ui1{animation-delay:.9s}.ui2{animation-delay:1.2s}.ui3{animation-delay:1.45s}.ui4{animation-delay:1.7s}
 @media (prefers-reduced-motion:reduce){.cover-photo{animation:none !important;border-radius:96px 0 96px 0}.cover-img{filter:none !important}.rv,.rva,.rvc>*,.cover-img,.cover-ui{opacity:1 !important;transform:none !important;animation:none !important;transition:none !important}.wl{opacity:1 !important;transform:none !important;transition:none !important}.cal.on span{transition:none !important}}
+
+/* ===== intro ===== */
+html{scrollbar-gutter:stable}
+html.intro-on,html.intro-on body{overflow:hidden !important;background:#F4F1EB}
+html.intro-on .cover-ui,html.intro-on .cover-img,html.intro-on .cover-photo{animation-play-state:paused !important}
+#intro{position:fixed;inset:0;z-index:300;background-color:#F4F1EB;overflow:hidden;transition:background-color .7s ease;cursor:pointer;-webkit-tap-highlight-color:transparent}
+#intro.out{background-color:rgba(244,241,235,0)}
+#intro .fx{position:absolute;inset:0;transition:opacity .5s ease}
+#intro.out .fx{opacity:0}
+#intro .drop{position:absolute;width:9px;height:12px;margin:-6px 0 0 -4.5px;background:#E39AA6;border-radius:50% 50% 50% 50% / 62% 62% 38% 38%;box-shadow:0 0 8px rgba(227,154,166,.55);opacity:0;animation:dropFall .38s cubic-bezier(.55,0,1,.45) forwards,dropHit .14s ease-out .38s forwards}
+@keyframes dropFall{0%{opacity:0;transform:translateY(-34vh) scaleY(1.4)}15%{opacity:1}100%{opacity:1;transform:translateY(0) scaleY(1.2)}}
+@keyframes dropHit{0%{opacity:1;transform:scale(1.8,.35)}100%{opacity:0;transform:scale(2.6,.1)}}
+#intro .ring{position:absolute;width:100px;height:100px;margin:-50px 0 0 -50px;border-radius:50%;border:1.7px solid #DD8C9B;box-shadow:0 0 10px rgba(227,154,166,.3);opacity:0;animation:ripple 1.5s cubic-bezier(.15,.6,.3,1) forwards}
+@keyframes ripple{0%{opacity:1;transform:scale(.05);border-color:#DD8C9B}50%{border-color:#E8AAB4}100%{opacity:0;transform:scale(var(--s,3));border-color:#F6DCE0}}
+#intro .glow{position:absolute;width:260px;height:260px;margin:-130px 0 0 -130px;border-radius:50%;background:radial-gradient(circle,rgba(244,241,235,1) 0%,rgba(244,241,235,1) 22%,rgba(236,190,198,.28) 48%,rgba(236,190,198,0) 70%);opacity:0;animation:glow 1.6s ease-out forwards}
+@keyframes glow{0%{opacity:0;transform:scale(.3)}30%{opacity:1}100%{opacity:0;transform:scale(1.3)}}
+#intro .ttl{position:absolute;left:0;right:0;top:var(--cy);margin:0;text-align:center;font-family:'Shine',cursive;font-weight:400;font-size:46px;line-height:1;letter-spacing:.01em;color:#E39AA6;white-space:nowrap;transform:translateY(-50%) scale(1.12);visibility:hidden}
+#intro .ttl .ink{color:#111}#intro .ttl .pt{color:#E39AA6}
+#intro .ttl span{display:inline-block}
+#intro.go .ch{opacity:0;filter:blur(8px);transform:translateY(4px);animation:bleed .8s ease forwards}
+@keyframes bleed{to{opacity:1;filter:blur(0);transform:none}}
+#intro .skip{position:absolute;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));font:500 11px SUIT,sans-serif;letter-spacing:.2em;color:rgba(17,17,17,.3);transition:opacity .3s}
+#intro.out .skip{opacity:0}
 </style>
 </head>
 <body>
+<div id="intro" aria-hidden="true">
+  <div class="fx"></div>
+  <p class="ttl"><span class="w ink">Our</span> <span class="w">forever</span> <span class="w ink">begins<span class="pt">.</span></span></p>
+  <div class="skip">TAP TO SKIP</div>
+</div>
+
 <div class="page">
 
   <div class="deco" aria-hidden="true" style="position:fixed;left:5vw;top:50%;transform:translateY(-50%);writing-mode:vertical-rl;font-family:'Shine',cursive;font-size:96px;line-height:1;color:rgba(112,102,92,.13);white-space:nowrap">Joohyun &amp; Jiyeon</div>
@@ -637,6 +666,59 @@ const CONFIG = {
     const atEnd = () => { if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) document.querySelectorAll('.rv:not(.in), .rvc:not(.in)').forEach((el) => el.classList.add('in')); };
     window.addEventListener('scroll', atEnd, { passive: true });
   }
+})();
+</script>
+
+<script>
+/* ===== intro: 톡… 토톡 물방울 + 글자 번짐 ===== */
+(function () {
+  const root = document.documentElement, intro = document.getElementById('intro');
+  if (!intro) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { intro.remove(); return; }
+  root.classList.add('intro-on');
+  try { history.scrollRestoration = 'manual'; } catch (e) {}
+  window.scrollTo(0, 0);
+  const h1 = document.querySelector('main h1');
+  h1.style.animation = 'none'; h1.style.transform = 'none'; h1.style.opacity = '0';
+  const ttl = intro.querySelector('.ttl'), fx = intro.querySelector('.fx');
+  intro.style.setProperty('--cy', Math.round(window.innerHeight * 0.46) + 'px');
+  let i = 0;
+  const walk = (node) => [...node.childNodes].forEach((n) => {
+    if (n.nodeType === 3) {
+      const f = document.createDocumentFragment();
+      [...n.textContent].forEach((c) => { const sp = document.createElement('span'); sp.className = 'ch'; sp.textContent = c; sp.style.animationDelay = (1.45 + i++ * 0.06) + 's'; f.appendChild(sp); });
+      n.replaceWith(f);
+    } else walk(n);
+  });
+  ttl.querySelectorAll('.w').forEach(walk);
+  let done = false; const timers = [];
+  const at = (ms, fn) => timers.push(setTimeout(fn, ms));
+  function splash(x, y, big) {
+    const d = document.createElement('div'); d.className = 'drop'; d.style.left = x + 'px'; d.style.top = y + 'px'; fx.appendChild(d);
+    at(380, () => {
+      const g = document.createElement('div'); g.className = 'glow'; g.style.left = x + 'px'; g.style.top = y + 'px'; if (!big) g.style.transform = 'scale(.7)'; fx.appendChild(g);
+      [0, 170].forEach((dl, k) => { const r = document.createElement('div'); r.className = 'ring'; r.style.left = x + 'px'; r.style.top = y + 'px'; r.style.setProperty('--s', big ? (k ? 4.2 : 3) : (k ? 2.6 : 1.9)); r.style.animationDelay = dl / 1000 + 's'; fx.appendChild(r); });
+    });
+  }
+  function finish(fast) {
+    if (done) return; done = true; timers.forEach(clearTimeout);
+    ttl.querySelectorAll('*').forEach((e) => { e.style.animation = 'none'; e.style.opacity = '1'; e.style.filter = 'none'; e.style.transform = 'none'; });
+    ttl.style.visibility = 'visible';
+    const r = h1.getBoundingClientRect(), t = ttl.getBoundingClientRect();
+    const dx = (r.left + r.width / 2) - (t.left + t.width / 2), dy = (r.top + r.height / 2) - (t.top + t.height / 2);
+    ttl.style.transition = 'transform ' + (fast ? .5 : .9) + 's cubic-bezier(.65,0,.25,1)';
+    requestAnimationFrame(() => { ttl.style.transform = 'translateY(-50%) translate(' + dx + 'px,' + dy + 'px) scale(1)'; intro.classList.add('out'); });
+    setTimeout(() => { h1.style.opacity = '1'; root.classList.remove('intro-on'); intro.style.transition = 'opacity .25s'; intro.style.opacity = '0'; setTimeout(() => intro.remove(), 260); }, fast ? 520 : 920);
+  }
+  intro.addEventListener('click', () => finish(true));
+  function start() {
+    const cy = Math.round(window.innerHeight * 0.46), W = window.innerWidth;
+    intro.classList.add('go'); ttl.style.visibility = 'visible';
+    [[170, W / 2, cy, true], [870, W / 2 - 46, cy + 4, false], [1060, W / 2 + 52, cy - 3, false]].forEach(([ms, x, y, big]) => at(ms, () => splash(x, y, big)));
+    at(2900, () => finish(false));
+  }
+  const f = document.fonts && document.fonts.load ? document.fonts.load("46px 'Shine'") : Promise.resolve();
+  Promise.race([f, new Promise((r) => setTimeout(r, 1200))]).then(start, start);
 })();
 </script>
 </body>
