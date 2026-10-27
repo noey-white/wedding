@@ -294,8 +294,9 @@ html.intro-on,html.intro-on body{overflow:hidden !important;background:#2B2725}
 .gbx .phd .t i{font-style:normal;color:#E2768F}
 .gbx .phd .m{text-align:right;font-size:9px;letter-spacing:.22em;line-height:1.6;font-weight:700;color:#D8C1A2}
 .gbx .gwrap{position:relative}
-.gbx .grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));transition:opacity .3s,transform .35s}
-.gbx .grid.sw{opacity:0;transform:translateX(var(--sx,20px))}
+.gbx .grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
+.gbx .cell svg,.gbx .cell.next:before{transition:opacity .3s,transform .35s}
+.gbx .grid.flip .cell svg,.gbx .grid.flip .cell.next:before{opacity:0;transform:translateX(var(--sx,20px))}
 .gbx .dots{position:absolute;inset:0;pointer-events:none}
 .gbx .dots i{position:absolute;width:3px;height:3px;margin:-1.5px 0 0 -1.5px;border-radius:50%;background:rgba(244,237,227,.32)}
 .gbx .cell{position:relative;aspect-ratio:1;border:0;padding:7px;background:transparent;cursor:default}
@@ -359,7 +360,7 @@ html.intro-on,html.intro-on body{overflow:hidden !important;background:#2B2725}
 .gbx .pf-c{font-family:'Shine',cursive;font-size:20px;letter-spacing:.02em;color:#F4EDE3;font-weight:400}
 .gbx .pf-c b{font-weight:400;color:#F2C2CB;font-size:24px;margin-right:1px}
 .gbx .pf{position:relative}
-.gbx .pg{position:absolute;top:50%;margin-top:-14px;width:28px;height:28px;border:0;background:transparent;color:#F4EDE3;font-size:12px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.gbx .pg{position:absolute;top:50%;margin-top:-7px;width:28px;height:28px;border:0;background:transparent;color:#F4EDE3;font-size:12px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
 .gbx #gb-pprev{left:-4px}
 .gbx #gb-pnext{right:-4px}
 .gbx .pg:disabled{color:rgba(244,237,227,.2);cursor:default}
@@ -893,7 +894,7 @@ const CONFIG = {
     $('#gb-cnt').parentNode.innerHTML = doodles.length ? '<b id="gb-cnt">' + doodles.length + '</b>개의 마음이 모였어요' : '<span class="empty">첫 번째 마음을 그려주세요</span><b id="gb-cnt" hidden></b>'; $('#gb-vol').textContent = 'No.' + String(page + 1).padStart(2, '0'); 
     $('#gb-pprev').style.visibility = $('#gb-pnext').style.visibility = P > 1 ? 'visible' : 'hidden'; $('#gb-pprev').disabled = page === 0; $('#gb-pnext').disabled = page >= P - 1;
   }
-  function go(p, dir){ grid.style.setProperty('--sx', (dir > 0 ? 24 : -24) + 'px'); grid.classList.add('sw'); setTimeout(() => { page = p; paint(-1); grid.style.setProperty('--sx', (dir > 0 ? -24 : 24) + 'px'); requestAnimationFrame(() => grid.classList.remove('sw')); }, 260); }
+  function go(p, dir){ grid.style.setProperty('--sx', (dir > 0 ? 24 : -24) + 'px'); grid.classList.add('flip'); setTimeout(() => { page = p; paint(-1); grid.style.setProperty('--sx', (dir > 0 ? -24 : 24) + 'px'); requestAnimationFrame(() => grid.classList.remove('flip')); }, 260); }
   $('#gb-pprev').onclick = () => page > 0 && go(page - 1, -1);
   $('#gb-pnext').onclick = () => page < pages() - 1 && go(page + 1, 1);
   function paintTexts(newObj){
