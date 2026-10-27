@@ -640,7 +640,7 @@ html.intro-on,html.intro-on body{overflow:hidden !important;background:#2B2725}
     <button type="button" id="linkBtn" style="flex:1;min-height:52px;border:1px solid #555;border-radius:999px;background:transparent;color:#fff;font-size:14px;font-weight:700">링크 복사</button>
   </div>
   <div style="display:flex;justify-content:space-between;margin-top:52px;padding-top:16px;border-top:1px solid #333;font-size:11px;letter-spacing:.16em;color:var(--mute)"><span>JOOHYUN &amp; JIYEON</span><span>2027. 12. 12</span></div>
-  <div style="margin-top:14px;font-size:10px;letter-spacing:.1em;color:#5E5E5B">♬MUSIC - <a href="https://www.youtube.com/watch?v=wJ2J7Gs0AmA" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:2px">YULDAU PIANO</a></div>
+  <div style="margin-top:8px;text-align:left;font-size:10px;letter-spacing:.1em;color:#5E5E5B">♬MUSIC - <a href="https://www.youtube.com/watch?v=wJ2J7Gs0AmA" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:2px">YULDAU PIANO</a></div>
   </div>
 </section>
 
@@ -681,6 +681,7 @@ html.intro-on,html.intro-on body{overflow:hidden !important;background:#2B2725}
 
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 <audio id="bgm" src="../assets/bgm.mp3" loop preload="metadata"></audio>
+<audio id="tapSnd" src="../assets/tap.mp3" preload="auto"></audio>
 
 <script>
 /* ============ 설정: 여기만 바꾸면 돼요 ============ */
@@ -1108,6 +1109,8 @@ function letterIntro(root) {
   env.addEventListener('click', () => {
     if (taps || !li.classList.contains('in')) return;
     taps = 1; li.classList.add('t1'); shake(); ripple(true); burst(5, 150);
+    const snd = document.getElementById('tapSnd');
+    if (snd) { try { snd.currentTime = 0; snd.volume = 0.8; } catch (e) {} const pp = snd.play(); if (pp) pp.catch(() => {}); }
     at(130, () => li.classList.add('t2'));
     at(280, () => { li.classList.add('t3'); openAll(); });
   });
