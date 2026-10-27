@@ -151,7 +151,7 @@ html.intro-on .cover-ui,html.intro-on .cover-img,html.intro-on .cover-photo{anim
 @keyframes LshakeA{0%,100%{transform:rotate(0)}15%{transform:rotate(-7deg) scale(1.03)}35%{transform:rotate(6deg)}55%{transform:rotate(-4deg)}75%{transform:rotate(2deg)}}
 @keyframes LshakeB{0%,100%{transform:rotate(0)}15%{transform:rotate(-7deg) scale(1.03)}35%{transform:rotate(6deg)}55%{transform:rotate(-4deg)}75%{transform:rotate(2deg)}}
 #intro .shadow{position:absolute;left:28px;right:28px;bottom:-28px;height:16px;border-radius:50%;background:radial-gradient(ellipse,rgba(var(--shc),.3),rgba(var(--shc),0) 70%);animation:Lshad 2.6s ease-in-out 1s infinite}
-@keyframes Lshad{0%,100%{transform:scaleX(1);opacity:1}50%{transform:scaleX(.88);opacity:.7}}
+@keyframes Lshad{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.8,.85);opacity:.55}}
 #intro .env svg.part{position:absolute;left:0;top:0;width:230px;height:156px;overflow:visible;display:block}
 #intro .back{z-index:0;filter:drop-shadow(0 12px 18px rgba(var(--shc),.22))}
 #intro .paper{position:absolute;left:17px;right:17px;top:12px;height:134px;border-radius:9px;background:linear-gradient(180deg,#FFFFFF,#FAF6F0);box-shadow:0 1px 4px rgba(var(--shc),.18);z-index:2;transition:transform .8s cubic-bezier(.3,1.15,.4,1) .3s;text-align:center;overflow:hidden}
@@ -190,7 +190,7 @@ html.intro-on .cover-ui,html.intro-on .cover-img,html.intro-on .cover-photo{anim
 #intro .li.letter .back,#intro .li.letter .front,#intro .li.letter .flap,#intro .li.letter .shadow{transition:opacity .6s ease,transform .8s ease;opacity:0;transform:translateY(60px)}
 #intro .li.letter .flap{transform:translateY(60px) scaleY(-1)}
 #intro .li.letter .bob{animation:none}
-#intro .hint{margin-top:80px;font-size:13px;color:#A39C96;letter-spacing:.02em;opacity:0;transition:opacity .4s}
+#intro .hint{margin-top:80px;font-size:15px;color:#A39C96;letter-spacing:.02em;opacity:0;transition:opacity .4s}
 #intro .li.in .hint{animation:LhintIn .6s ease 1.3s forwards}
 @keyframes LhintIn{to{opacity:1}}
 #intro .li.t3 .hint{opacity:0 !important;animation:none}
@@ -199,7 +199,7 @@ html.intro-on .cover-ui,html.intro-on .cover-img,html.intro-on .cover-photo{anim
 #intro .li.t1 .dots i:nth-child(1),#intro .li.t2 .dots i:nth-child(-n+2),#intro .li.t3 .dots i{background:var(--hd);transform:scale(1.2)}
 #intro .fh{position:absolute;left:50%;top:50%;width:28px;height:27px;margin:-70px 0 0 -14px;pointer-events:none;z-index:8;opacity:0;filter:drop-shadow(0 3px 4px rgba(var(--shc),.25));animation:LfloatUp 1.6s cubic-bezier(.2,.6,.3,1) forwards}
 @keyframes LfloatUp{0%{opacity:0;transform:translate(0,0) scale(.4) rotate(0)}15%{opacity:1}100%{opacity:0;transform:translate(var(--dx),-180px) scale(var(--sc)) rotate(var(--rt))}}
-#intro .skipb{position:absolute;right:16px;bottom:16px;font-size:11px;letter-spacing:.2em;color:rgba(255,255,255,.3);background:none;border:0;padding:6px;z-index:9}
+#intro .skipb{display:block;margin:26px auto 0;font:500 10px SUIT,sans-serif;letter-spacing:.24em;color:rgba(244,237,227,.32);background:none;border:0;padding:8px 12px;cursor:pointer}
 #intro .li.letter .skipb,#intro .li.main .skipb{display:none}
 #intro .paper .pheart{opacity:0}
 #intro .li.t3 .paper .pheart{opacity:1;transition:opacity .4s .25s,transform .6s ease}
@@ -330,8 +330,8 @@ html.intro-on .cover-ui,html.intro-on .cover-img,html.intro-on .cover-photo{anim
     <div class="halo"></div>
     <div class="rips" id="rips"></div>
     <div class="envw">
+      <div class="shadow"></div>
       <div class="bob">
-        <div class="shadow"></div>
         <div class="env" id="env" role="button" aria-label="편지 열기">
           <svg class="part back" viewBox="0 0 230 156"><defs><linearGradient id="gb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--b1)"/><stop offset="1" style="stop-color:var(--b2)"/></linearGradient></defs><rect x="0" y="0" width="230" height="156" rx="16" fill="url(#gb)"/></svg>
           <div class="paper">
@@ -389,10 +389,9 @@ html.intro-on .cover-ui,html.intro-on .cover-img,html.intro-on .cover-photo{anim
         </div>
       </div>
     </div>
-    <div class="hint">편지를 눌러 열어보세요<div class="dots"><i></i><i></i><i></i></div></div>
+    <div class="hint">편지를 눌러 열어보세요!<div class="dots"><i></i><i></i><i></i></div><button class="skipb" id="skipb" type="button">SKIP</button></div>
     <div id="hearts"></div>
   </div>
-  <button class="skipb" id="skipb" type="button">SKIP</button>
 </div>
 </div>
 
