@@ -222,7 +222,7 @@ html.intro-on .cover-ui,html.intro-on .cover-img,html.intro-on .cover-photo{anim
 
 /* ===== guestbook poster ===== */
 .gbx .sub{text-align:center;font-size:14px;line-height:1.8;color:#555;margin:20px 0 0}
-.gbx .poster{position:relative;margin:26px auto 0;padding:20px 16px 16px;border-radius:6px;background:radial-gradient(ellipse 90% 70% at 50% 40%,#3A3431 0%,#2E2927 55%,#252120 100%);box-shadow:0 18px 30px -12px rgba(0,0,0,.45),0 2px 4px rgba(0,0,0,.2);color:#F4EDE3;overflow:hidden}
+.gbx .poster{position:relative;margin:26px auto 0;padding:26px 16px 22px;border-radius:6px;background:radial-gradient(ellipse 90% 70% at 50% 40%,#3A3431 0%,#2E2927 55%,#252120 100%);box-shadow:0 18px 30px -12px rgba(0,0,0,.45),0 2px 4px rgba(0,0,0,.2);color:#F4EDE3;overflow:hidden}
 .gbx .poster:after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .25  0 0 0 0 .12  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.28'/></svg>");opacity:.35;mix-blend-mode:screen;pointer-events:none}
 .gbx .phd{display:flex;align-items:flex-end;justify-content:space-between;padding:0 4px 14px}
 .gbx .phd .t{font-family:'Shine',cursive;font-size:26px;line-height:1}
@@ -244,7 +244,7 @@ html.intro-on .cover-ui,html.intro-on .cover-img,html.intro-on .cover-photo{anim
 .gbx .pager{display:flex;align-items:center;gap:6px}
 .gbx .pager button{width:26px;height:26px;border-radius:50%;border:1px solid rgba(244,237,227,.3);background:transparent;color:#F4EDE3;font-size:13px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
 .gbx .pager button:disabled{opacity:.25;cursor:default}
-.gbx .hint{text-align:center;font-size:12px;color:#8A8A86;margin-top:22px}
+.gbx .hint{text-align:center;font-size:13px;color:#8A8A86;margin-top:22px}
 .gbx .hint+.poster{margin-top:10px}
 .gbx .poster+.btn-k{margin-top:30px}
 .gbx .btn-k{display:block;width:100%;min-height:54px;margin-top:18px;border:0;border-radius:999px;background:#111;color:#fff;font:700 15px 'SUIT',sans-serif;cursor:pointer}
@@ -287,18 +287,18 @@ html.intro-on .cover-ui,html.intro-on .cover-img,html.intro-on .cover-photo{anim
 .gbx .vfoot .w{font-size:11px;color:#BDB2A5}
 .gbx .vfoot .n{font-family:'Shine',cursive;font-size:19px;color:#F2C2CB}
 .gbx .tg{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;width:fit-content;margin:0 auto 16px;border:1px solid #F4EDE3;border-radius:999px;padding:2.5px}
-.gbx .tg-a{display:flex;align-items:center;justify-content:center;min-height:28px;padding:0 11px;border-radius:999px;background:#F4EDE3;color:#2B2725;font-family:'Shine',cursive;font-size:17px;letter-spacing:0;white-space:nowrap}
-.gbx .tg-a i{font-style:normal;color:#E2768F;font-family:'SUIT',sans-serif;font-size:10px;margin:0 1px;position:relative;top:-1px}
-.gbx .tg-b{display:flex;align-items:center;justify-content:center;padding:0 11px;color:#F4EDE3;font-size:11px;font-weight:500;letter-spacing:.04em;white-space:nowrap}
+.gbx .tg-a{display:flex;align-items:center;justify-content:center;min-height:32px;padding:0 13px;border-radius:999px;background:#F4EDE3;color:#2B2725;font-family:'Shine',cursive;font-size:19.5px;letter-spacing:0;white-space:nowrap}
+.gbx .tg-a i{font-style:normal;color:#E2768F;font-family:'SUIT',sans-serif;font-size:11.5px;margin:0 1px;position:relative;top:-1px}
+.gbx .tg-b{display:flex;align-items:center;justify-content:center;padding:0 13px;color:#F4EDE3;font-size:12.5px;font-weight:500;letter-spacing:.04em;white-space:nowrap}
 .gbx .pf{display:flex !important;align-items:center;justify-content:center !important;gap:14px;padding:16px 4px 2px !important}
-.gbx .pf-c{font-family:'Shine',cursive;font-size:18px;letter-spacing:.02em;color:#F4EDE3;font-weight:400}
-.gbx .pf-c b{font-weight:400;color:#F2C2CB;font-size:22px;margin-right:1px}
+.gbx .pf-c{font-family:'Shine',cursive;font-size:20px;letter-spacing:.02em;color:#F4EDE3;font-weight:400}
+.gbx .pf-c b{font-weight:400;color:#F2C2CB;font-size:24px;margin-right:1px}
 .gbx .pf{position:relative}
 .gbx .pg{position:absolute;top:50%;margin-top:-14px;width:28px;height:28px;border:0;background:transparent;color:#F4EDE3;font-size:12px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
 .gbx #gb-gb-pprev{left:-4px}
 .gbx #gb-gb-pnext{right:-4px}
 .gbx .pg:disabled{color:rgba(244,237,227,.2);cursor:default}
-.gbx .vol{text-align:center;font-size:10px;font-weight:700;letter-spacing:.24em;color:#F4EDE3;margin:0 0 11px}
+.gbx .vol{text-align:center;font-size:11.5px;font-weight:700;letter-spacing:.24em;color:#F4EDE3;margin:0 0 11px}
 .gbx .pf-r b{font-weight:700;color:#F4EDE3}
 .gbx .sheet *,.gbx .all *,.gbx .view *{box-sizing:border-box}
 .gbx input.field{min-height:0;height:42px;padding:0 14px}
@@ -317,7 +317,7 @@ html.intro-on .cover-ui,html.intro-on .cover-img,html.intro-on .cover-photo{anim
 .gbx .note .th svg{width:100%;height:100%;display:block}
 .gbx .note .bd{flex:1;min-width:0}
 .gbx .sopt .warn{display:block;margin-top:8px;font-size:11px;line-height:1.55;color:#C46A7C}
-.gbx .pf-c .empty{font-size:17px}
+.gbx .pf-c .empty{font-size:19px}
 
 .sh h2 .h2ico{display:inline-block;vertical-align:middle;margin:-6px 0 0 8px;transform:rotate(-8deg)}
 </style>
