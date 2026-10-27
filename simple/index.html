@@ -185,7 +185,7 @@ html.intro-on .cover-ui,html.intro-on .cover-img,html.intro-on .cover-photo{anim
 #intro .li.t3 .paper{transform:translateY(-30px)}
 #intro .li.rise .paper{transform:translateY(-112px);transition:transform .8s cubic-bezier(.5,0,.3,1)}
 #intro .li.letter .paper{z-index:7;transform:translateY(-4px) scale(1.3);transition:transform .9s cubic-bezier(.3,1.1,.4,1);box-shadow:0 18px 40px rgba(var(--shc),.2)}
-#intro .li.letter .paper .pheart{opacity:0;transform:scale(.6)}
+#intro .li.t3.letter .paper .pheart{opacity:0;transform:translateY(-8px) scale(.9);transition:opacity .4s ease,transform .6s ease}
 #intro .li.letter .paper .txt{opacity:1}
 #intro .li.letter .back,#intro .li.letter .front,#intro .li.letter .flap,#intro .li.letter .shadow{transition:opacity .6s ease,transform .8s ease;opacity:0;transform:translateY(60px)}
 #intro .li.letter .flap{transform:translateY(60px) scaleY(-1)}
@@ -202,8 +202,7 @@ html.intro-on .cover-ui,html.intro-on .cover-img,html.intro-on .cover-photo{anim
 #intro .skipb{position:absolute;right:16px;bottom:16px;font-size:11px;letter-spacing:.2em;color:rgba(255,255,255,.3);background:none;border:0;padding:6px;z-index:9}
 #intro .li.letter .skipb,#intro .li.main .skipb{display:none}
 #intro .paper .pheart{opacity:0}
-#intro .li.t3 .paper .pheart{opacity:1;transition:opacity .4s .25s}
-#intro .li.letter .paper .pheart{opacity:0}
+#intro .li.t3 .paper .pheart{opacity:1;transition:opacity .4s .25s,transform .6s ease}
 #intro .paper .pheart{width:80px;height:74px;margin-left:-40px;top:34px}
 #intro .seal{width:64px;height:60px;margin:-36px 0 0 -32px}
 #intro .fh{width:34px;height:32px}
@@ -220,6 +219,107 @@ html.intro-on .cover-ui,html.intro-on .cover-img,html.intro-on .cover-photo{anim
 #intro .li.letter .halo{opacity:1;transform:scale(1.25);transition:transform 1s ease,opacity 1s}
 #intro .shadow{background:radial-gradient(ellipse,rgba(0,0,0,.55),rgba(0,0,0,0) 70%) !important;height:20px !important;bottom:-30px !important;filter:blur(1px)}
 #intro .li.main .amb,#intro .li.main .halo{opacity:0;transition:opacity .8s ease}
+
+/* ===== guestbook poster ===== */
+.gbx .sub{text-align:center;font-size:14px;line-height:1.8;color:#555;margin:20px 0 0}
+.gbx .poster{position:relative;margin:26px auto 0;padding:20px 16px 16px;border-radius:6px;background:radial-gradient(ellipse 90% 70% at 50% 40%,#3A3431 0%,#2E2927 55%,#252120 100%);box-shadow:0 18px 30px -12px rgba(0,0,0,.45),0 2px 4px rgba(0,0,0,.2);color:#F4EDE3;overflow:hidden}
+.gbx .poster:after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .25  0 0 0 0 .12  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.28'/></svg>");opacity:.35;mix-blend-mode:screen;pointer-events:none}
+.gbx .phd{display:flex;align-items:flex-end;justify-content:space-between;padding:0 4px 14px}
+.gbx .phd .t{font-family:'Shine',cursive;font-size:26px;line-height:1}
+.gbx .phd .t i{font-style:normal;color:#E2768F}
+.gbx .phd .m{text-align:right;font-size:9px;letter-spacing:.22em;line-height:1.6;font-weight:700;color:#D8C1A2}
+.gbx .gwrap{position:relative}
+.gbx .grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));transition:opacity .3s,transform .35s}
+.gbx .grid.sw{opacity:0;transform:translateX(var(--sx,20px))}
+.gbx .dots{position:absolute;inset:0;pointer-events:none}
+.gbx .dots i{position:absolute;width:3px;height:3px;margin:-1.5px 0 0 -1.5px;border-radius:50%;background:rgba(244,237,227,.32)}
+.gbx .cell{position:relative;aspect-ratio:1;border:0;padding:7px;background:transparent;cursor:default}
+.gbx .cell svg{width:100%;height:100%;display:block;overflow:hidden}
+.gbx .cell.f{cursor:pointer}
+.gbx .cell.new svg{animation:Gstamp .7s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes Gstamp{0%{transform:scale(.2) rotate(-14deg);opacity:0}100%{transform:none;opacity:1}}
+.gbx .cell.next:before{content:'+';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:16px;color:rgba(244,237,227,.35);animation:Gblink 1.6s ease-in-out infinite}
+@keyframes Gblink{50%{opacity:.3}}
+.gbx .pf{display:flex;justify-content:space-between;align-items:center;padding:12px 4px 0;font-size:9px;letter-spacing:.2em;color:#D8C1A2;font-weight:700}
+.gbx .pager{display:flex;align-items:center;gap:6px}
+.gbx .pager button{width:26px;height:26px;border-radius:50%;border:1px solid rgba(244,237,227,.3);background:transparent;color:#F4EDE3;font-size:13px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.gbx .pager button:disabled{opacity:.25;cursor:default}
+.gbx .hint{text-align:center;font-size:12px;color:#8A8A86;margin-top:22px}
+.gbx .hint+.poster{margin-top:10px}
+.gbx .poster+.btn-k{margin-top:30px}
+.gbx .btn-k{display:block;width:100%;min-height:54px;margin-top:18px;border:0;border-radius:999px;background:#111;color:#fff;font:700 15px 'SUIT',sans-serif;cursor:pointer}
+.gbx .tlist{margin-top:34px}
+.gbx .tl-h{font-size:11px;font-weight:500;letter-spacing:.28em;color:#8A8A86;text-align:center;margin-bottom:12px}
+.gbx .note{background:#fff;border:1px solid #E4E4E1;border-radius:14px;padding:16px 18px 12px;margin-top:10px}
+.gbx .note .msg{font-family:'Shine',cursive;font-size:20px;line-height:1.5;white-space:pre-wrap;word-break:keep-all}
+.gbx .note .foot{display:flex;justify-content:space-between;align-items:baseline;margin-top:8px;padding-top:8px;border-top:1px solid #EDEDEA}
+.gbx .note .w{font-size:11px;color:#8A8A86}
+.gbx .note .n{font-family:'Shine',cursive;font-size:18px}
+.gbx .note.new{animation:GnIn .6s cubic-bezier(.2,.8,.2,1) both}
+@keyframes GnIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.gbx .sheet{position:fixed;inset:0;z-index:150;background:#F4F1EB;display:flex;flex-direction:column;align-items:center;padding:14px 18px 22px;opacity:0;pointer-events:none;transform:translateY(16px);transition:opacity .3s,transform .35s cubic-bezier(.2,.8,.2,1);overflow-y:auto}
+.gbx .sheet.on{opacity:1;pointer-events:auto;transform:none}
+.gbx .sx{align-self:flex-start;width:44px;height:44px;border-radius:50%;border:0;background:#E4DED5;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none}
+.gbx .stitle{margin:6px 0 6px;font-family:'Shine',cursive;font-size:22px;line-height:1.2;text-align:center;color:#2B2725;white-space:nowrap}
+.gbx .sopt{font-size:12px;line-height:1.6;color:#8A8A86;margin-bottom:14px;text-align:center;word-break:keep-all}
+.gbx .pad{position:relative;width:100%;max-width:330px;aspect-ratio:1;border-radius:30px;background:radial-gradient(ellipse at 50% 40%,#3A3431,#2B2725 70%);box-shadow:inset 0 2px 12px rgba(0,0,0,.35);touch-action:none;flex:none;overflow:hidden}
+.gbx .pad:after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .25  0 0 0 0 .12  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.28'/></svg>");opacity:.3;mix-blend-mode:screen;pointer-events:none}
+.gbx .pad canvas{position:absolute;inset:0;width:100%;height:100%;cursor:crosshair;z-index:1}
+.gbx .pad .ph0{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:13px;color:rgba(244,237,227,.35);pointer-events:none;transition:opacity .2s;z-index:1}
+.gbx .ok{position:absolute;right:12px;top:12px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(244,237,227,.14);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2}
+.gbx .tools{display:flex;gap:8px;margin-top:14px}
+.gbx .tools button{width:48px;height:36px;border-radius:999px;border:0;background:#E4DED5;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.gbx .tools button:disabled{opacity:.35;cursor:default}
+.gbx .pal{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:14px;padding:8px 20px;border-radius:999px;background:#FBF8F3;border:1px solid #DCD5CB;min-height:48px}
+.gbx .sw{width:18px;height:18px;border-radius:50%;border:1px solid rgba(43,39,37,.18);padding:0;cursor:pointer;transition:width .25s cubic-bezier(.3,1.5,.5,1),height .25s cubic-bezier(.3,1.5,.5,1),box-shadow .25s;flex:none}
+.gbx .sw.on{width:27px;height:27px;box-shadow:0 0 0 2.5px #FBF8F3,0 0 0 3.5px #2B2725,0 0 12px 3px var(--g)}
+.gbx .fields{width:100%;max-width:330px;margin-top:16px;display:flex;flex-direction:column;gap:8px}
+.gbx .field{width:100%;min-height:46px;border:1px solid #DCD5CB;border-radius:12px;background:#fff;padding:12px 14px;font:400 15px 'SUIT',sans-serif;color:#111}
+.gbx .field:focus{outline:1.5px solid #111;border-color:#111}
+.gbx .err{font-size:12px;color:#B42318;text-align:center;min-height:16px}
+.gbx .view{position:fixed;inset:0;z-index:160;background:rgba(17,17,17,.55);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .25s}
+.gbx .view.on{opacity:1;pointer-events:auto}
+.gbx .vcard{width:100%;max-width:300px;border-radius:18px;padding:20px 20px 18px;background:radial-gradient(ellipse at 50% 30%,#3A3431,#2B2725 70%);color:#F4EDE3;box-shadow:0 20px 40px rgba(0,0,0,.35);transform:scale(.92);transition:transform .3s cubic-bezier(.3,1.4,.5,1)}
+.gbx .view.on .vcard{transform:none}
+.gbx .vcard svg{width:100%;aspect-ratio:1;display:block;background:rgba(244,237,227,.05);border-radius:12px}
+.gbx .vmsg{font-family:'Shine',cursive;font-size:21px;line-height:1.45;margin-top:14px;white-space:pre-wrap;word-break:keep-all}
+.gbx .vfoot{display:flex;justify-content:space-between;align-items:baseline;margin-top:10px;padding-top:10px;border-top:1px solid rgba(244,237,227,.18)}
+.gbx .vfoot .w{font-size:11px;color:#BDB2A5}
+.gbx .vfoot .n{font-family:'Shine',cursive;font-size:19px;color:#F2C2CB}
+.gbx .tg{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;width:fit-content;margin:0 auto 16px;border:1px solid #F4EDE3;border-radius:999px;padding:2.5px}
+.gbx .tg-a{display:flex;align-items:center;justify-content:center;min-height:28px;padding:0 11px;border-radius:999px;background:#F4EDE3;color:#2B2725;font-family:'Shine',cursive;font-size:17px;letter-spacing:0;white-space:nowrap}
+.gbx .tg-a i{font-style:normal;color:#E2768F;font-family:'SUIT',sans-serif;font-size:10px;margin:0 1px;position:relative;top:-1px}
+.gbx .tg-b{display:flex;align-items:center;justify-content:center;padding:0 11px;color:#F4EDE3;font-size:11px;font-weight:500;letter-spacing:.04em;white-space:nowrap}
+.gbx .pf{display:flex !important;align-items:center;justify-content:center !important;gap:14px;padding:16px 4px 2px !important}
+.gbx .pf-c{font-family:'Shine',cursive;font-size:18px;letter-spacing:.02em;color:#F4EDE3;font-weight:400}
+.gbx .pf-c b{font-weight:400;color:#F2C2CB;font-size:22px;margin-right:1px}
+.gbx .pf{position:relative}
+.gbx .pg{position:absolute;top:50%;margin-top:-14px;width:28px;height:28px;border:0;background:transparent;color:#F4EDE3;font-size:12px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.gbx #gb-gb-pprev{left:-4px}
+.gbx #gb-gb-pnext{right:-4px}
+.gbx .pg:disabled{color:rgba(244,237,227,.2);cursor:default}
+.gbx .vol{text-align:center;font-size:10px;font-weight:700;letter-spacing:.24em;color:#F4EDE3;margin:0 0 11px}
+.gbx .pf-r b{font-weight:700;color:#F4EDE3}
+.gbx .sheet *,.gbx .all *,.gbx .view *{box-sizing:border-box}
+.gbx input.field{min-height:0;height:42px;padding:0 14px}
+.gbx .btn-w{display:block;width:100%;min-height:52px;margin-top:8px;border:1px solid #111;border-radius:999px;background:#fff;color:#111;font:700 15px 'SUIT',sans-serif;cursor:pointer}
+.gbx .all{position:fixed;inset:0;z-index:155;background:rgba(17,17,17,.5);display:flex;align-items:center;justify-content:center;padding:24px 16px;opacity:0;pointer-events:none;transition:opacity .25s}
+.gbx .all.on{opacity:1;pointer-events:auto}
+.gbx .all-p{width:100%;max-width:400px;max-height:min(80vh,680px);display:flex;flex-direction:column;background:#fff;border-radius:20px;overflow:hidden;transform:translateY(12px);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.gbx .all.on .all-p{transform:none}
+.gbx .all-h{display:flex;align-items:center;justify-content:space-between;padding:18px 20px 14px;border-bottom:1px solid #E4E4E1}
+.gbx .all-h .t{font-family:'Shine',cursive;font-size:26px}
+.gbx .all-h .c{font-size:12px;color:#8A8A86;margin-left:8px;font-family:'SUIT',sans-serif}
+.gbx .all-x{width:40px;height:40px;border-radius:50%;border:1px solid #111;background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.gbx .all-l{overflow:auto;padding:4px 20px 24px;overscroll-behavior:contain}
+.gbx .note{display:flex;gap:12px;align-items:flex-start}
+.gbx .note .th{flex:none;width:52px;height:52px;border-radius:10px;background:#2B2725;padding:5px}
+.gbx .note .th svg{width:100%;height:100%;display:block}
+.gbx .note .bd{flex:1;min-width:0}
+.gbx .sopt .warn{display:block;margin-top:8px;font-size:11px;line-height:1.55;color:#C46A7C}
+.gbx .pf-c .empty{font-size:17px}
+
+.sh h2 .h2ico{display:inline-block;vertical-align:middle;margin:-6px 0 0 8px;transform:rotate(-8deg)}
 </style>
 </head>
 <body>
@@ -325,7 +425,7 @@ html.intro-on .cover-ui,html.intro-on .cover-img,html.intro-on .cover-photo{anim
 
 <!-- 01 INVITATION -->
 <section style="padding:80px 28px 84px;border-top:1px solid var(--line)">
-  <div class="sh rv"><div class="no">01 · INVITATION</div><h2>초대합니다</h2><div class="ln"></div></div>
+  <div class="sh rv"><div class="no">01 · INVITATION</div><h2>초대합니다<svg class="h2ico" width="34" height="26" viewBox="0 0 34 26" aria-hidden="true"><rect x="1" y="2" width="32" height="22" rx="4" fill="#F3E9DE" stroke="#D8C1A2" stroke-width="1"/><path d="M2.5 4.5 15 14a3.2 3.2 0 0 0 4 0L31.5 4.5" fill="none" stroke="#D8C1A2" stroke-width="1.2" stroke-linejoin="round"/><path d="M2.5 23 13 14.5M31.5 23 21 14.5" fill="none" stroke="#E6D6C4" stroke-width="1"/><path d="M17 17.6c-2.6-1.8-4-3-4-4.6 0-1.1.9-2 2-2 .8 0 1.5.4 2 1.1.5-.7 1.2-1.1 2-1.1 1.1 0 2 .9 2 2 0 1.6-1.4 2.8-4 4.6z" fill="#E2768F"/></svg></h2><div class="ln"></div></div>
   <p class="rv write" style="margin:40px 0 0;text-align:center;font-family:'Shine',cursive;font-size:25px;line-height:1.55"><span class="wl wl1">때론 <span style="color:#D97F90">오래된 친구</span>처럼,</span><span class="wl wl2">때론 <span style="color:#D97F90">처음 만나는 사람</span>처럼</span><span class="wl wl3">그 많은 당신을 다 <span style="color:#D97F90">사랑</span>하고 싶습니다.</span></p>
   <div class="rva" style="text-align:center;font-size:12px;color:var(--mute);margin-top:14px">「사랑고백」, 이준호</div>
   <p class="rva" style="margin:44px 0 0;text-align:center;font-size:15px;line-height:2;color:#333">캠퍼스에서 시작된 작은 인연이<br>다섯 번의 봄을 지나 평생의 약속이 되었습니다.<br>기쁜 날, 함께 축하해 주시면 감사하겠습니다.</p>
@@ -440,17 +540,17 @@ html.intro-on .cover-ui,html.intro-on .cover-img,html.intro-on .cover-photo{anim
 <!-- 06 GUESTBOOK -->
 <section style="padding:80px 20px 80px">
   <div class="sh rv"><div class="no">06 · GUESTBOOK</div><h2>방명록</h2><div class="ln"></div></div>
-  <form id="gbForm" class="rv" style="margin-top:28px;display:flex;flex-direction:column;gap:8px" novalidate>
-    <label class="lbl" for="gbName" style="margin:0">이름</label>
-    <input id="gbName" class="field" type="text" placeholder="이름" maxlength="20" autocomplete="name">
-    <label class="lbl" for="gbMsg" style="margin:6px 0 0">메시지</label>
-    <textarea id="gbMsg" class="field" rows="3" placeholder="두 사람에게 축하의 마음을 남겨주세요" maxlength="300" style="resize:none"></textarea>
-    <button type="submit" class="btn-k" style="margin-top:6px;min-height:52px">축하 메시지 남기기</button>
-  </form>
-  <div class="rv d1" style="display:flex;flex-direction:column;margin-top:22px">
-    <div id="gbEmpty" style="border:1px dashed #CFCFCB;border-radius:14px;text-align:center;font-size:13px;color:var(--mute);padding:22px 0">첫 번째 축하 메시지를 남겨주세요</div>
-    <div id="gbList"></div>
-    <button type="button" id="gbMore" class="btn-o" hidden aria-haspopup="dialog" style="align-self:center;margin-top:20px;padding:0 22px">방명록 전체보기</button>
+  <div class="gbx">
+  <p class="sub rv">두 사람에게 작은 그림과 축하 메시지를 남겨주세요.<br>모두의 그림이 모여 하나의 포스터가 돼요.</p>
+  <div class="hint rv">그림을 누르면 메시지를 볼 수 있어요</div>
+  <div class="poster rv d1">
+    <div class="vol" id="gb-vol">No.01</div>
+    <div class="tg" aria-label="주현 그리고 지연, 2027년 12월 12일"><span class="tg-a">주현<i>♡</i>지연</span><span class="tg-b">2027.12.12</span></div>
+    <div class="gwrap"><div class="grid" id="gb-grid"></div><div class="dots" id="gb-dots"></div></div>
+    <div class="pf"><button type="button" class="pg" id="gb-pprev" aria-label="이전 포스터">◀</button><span class="pf-c"><b id="gb-cnt">0</b>개의 마음이 모였어요</span><button type="button" class="pg" id="gb-pnext" aria-label="다음 포스터">▶</button></div>
+  </div>
+  <button class="btn-k" id="gb-open" type="button">방명록 남기기</button>
+  <button class="btn-w" id="gb-openAll" type="button">방명록 전체 보기</button>
   </div>
 </section>
 
@@ -475,15 +575,19 @@ html.intro-on .cover-ui,html.intro-on .cover-img,html.intro-on .cover-photo{anim
   </main>
 </div>
 
-<!-- guestbook modal -->
-<div id="gbModal" class="gbm" role="dialog" aria-modal="true" aria-labelledby="gbmTitle" hidden>
-  <div class="gbm-panel">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px 20px 14px;border-bottom:1px solid var(--line)">
-      <div><div style="font-size:11px;font-weight:500;letter-spacing:.32em;color:var(--mute)">GUESTBOOK</div><div id="gbmTitle" style="font-family:'Shine',cursive;font-size:26px;margin-top:4px">방명록 전체</div></div>
-      <button type="button" class="icon-btn" id="gbClose" aria-label="닫기"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-    </div>
-    <div class="gbm-list" id="gbAll"></div>
-  </div>
+<div class="gbx gbx-m">
+<div class="sheet" id="gb-sheet" role="dialog" aria-modal="true" aria-label="방명록 쓰기">
+  <button class="sx" id="gb-close" type="button" aria-label="닫기"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B342E" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+  <div class="stitle">특별한 당신만의 방명록을 남겨주세요</div>
+  <div class="sopt">그림은 선택입니다.<br>당신을 표현하는 그림, 축하하는 그림 모두 환영해요!<span class="warn">한 번 포스터에 올라간 그림과 메시지는 지울 수 없어요.<br>신중하게 기록해주시기 바랍니다.</span></div>
+  <div class="pad" id="gb-pad"><canvas id="gb-cv"></canvas><div class="ph0" id="gb-ph0">여기에 그려주세요</div><button class="ok" id="gb-ok" type="button" aria-label="남기기"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></button></div>
+  <div class="tools"><button id="gb-undo" type="button" aria-label="되돌리기"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6B635C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5"></path><path d="M4 9h10a6 6 0 0 1 0 12h-3"></path></svg></button><button id="gb-clear" type="button" aria-label="모두 지우기"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6B635C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"></path></svg></button><button id="gb-redo" type="button" aria-label="다시 하기"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6B635C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14l5-5-5-5"></path><path d="M20 9H10a6 6 0 0 0 0 12h3"></path></svg></button></div>
+  <div class="pal" id="gb-pal"></div>
+  <div class="fields"><input class="field" id="gb-nm" maxlength="12" placeholder="이름"><textarea class="field" id="gb-ms" rows="3" maxlength="200" placeholder="두 사람에게 축하 메시지를 남겨주세요" style="resize:none"></textarea><div class="err" id="gb-err"></div><button class="btn-k" id="gb-save" type="button" style="margin-top:0">글만 남기기</button></div>
+</div>
+<div class="all" id="gb-all" role="dialog" aria-modal="true" aria-label="방명록 전체"><div class="all-p"><div class="all-h"><div><span class="t">방명록</span><span class="c" id="gb-allc"></span></div><button class="all-x" id="gb-allx" type="button" aria-label="닫기"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="all-l" id="gb-tl"></div></div></div>
+<div class="view" id="gb-view"><div class="vcard"><div id="gb-vsvg"></div><div class="vmsg" id="gb-vmsg"></div><div class="vfoot"><span class="w" id="gb-vw"></span><span class="n" id="gb-vn"></span></div></div></div>
+
 </div>
 
 <!-- lightbox -->
@@ -641,7 +745,7 @@ const CONFIG = {
     },
     async post(data) {
       if (CONFIG.sheetApiUrl) { await fetch(CONFIG.sheetApiUrl, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(data) }); return; }
-      if (data.type === 'guestbook') { try { const a = JSON.parse(localStorage.getItem('gb') || '[]'); a.unshift({ name: data.name, msg: data.msg, when: data.when }); localStorage.setItem('gb', JSON.stringify(a)); } catch (e) {} }
+      if (data.type === 'guestbook') { try { const a = JSON.parse(localStorage.getItem('gb') || '[]'); a.unshift({ name: data.name, msg: data.msg, when: data.when, drawing: data.drawing || null }); localStorage.setItem('gb', JSON.stringify(a)); } catch (e) {} }
     }
   };
 
@@ -671,41 +775,98 @@ const CONFIG = {
   });
   $('#rsvpReset').addEventListener('click', () => { form.hidden = false; $('#rsvpDone').hidden = true; });
 
-  /* Guestbook */
-  let entries = [];
-  function noteEl(e) {
-    const d = document.createElement('div'); d.className = 'note';
-    d.innerHTML = '<div class="msg"></div><div class="foot"><span class="when"></span><span class="from"></span></div>';
-    d.querySelector('.msg').textContent = e.msg; d.querySelector('.when').textContent = e.when || ''; d.querySelector('.from').textContent = 'From. ' + e.name;
-    return d;
+  /* Guestbook: 그림 포스터 + 글 방명록 */
+  (function () {
+  const COLORS = [["#F4EDE3", "아이보리"], ["#D8C1A2", "베이지"], ["#F2C2CB", "연핑크"], ["#E2768F", "진핑크"]];
+  let entries = [];   // 최신순. 그림이 있으면 strokes 를 가짐
+  const okColor = (c) => /^#[0-9a-fA-F]{3,8}$/.test(c), okPath = (d) => typeof d === 'string' && /^[MLQl0-9. -]+$/.test(d) && d.length < 9000;
+  const cleanDrawing = (dr) => Array.isArray(dr) ? dr.filter((s) => s && okColor(s.c) && okPath(s.d)).map((s) => ({ c: s.c, d: s.d })) : [];
+  let doodles = [], texts = [];
+  const derive = () => { doodles = entries.filter((e) => e.strokes && e.strokes.length).slice().reverse(); texts = entries.filter((e) => !(e.strokes && e.strokes.length)); };
+
+  const grid = $('#gb-grid'), N = 35, COLS = 5, ROWS = 7;
+  let page = 0;
+  for (let i = 0; i < N; i++) { const b = document.createElement('button'); b.type = 'button'; b.className = 'cell'; grid.appendChild(b); }
+  const dots = $('#gb-dots');
+  for (let r = 1; r < ROWS; r++) for (let c = 1; c < COLS; c++) { const d = document.createElement('i'); d.style.left = (c / COLS * 100) + '%'; d.style.top = (r / ROWS * 100) + '%'; dots.appendChild(d); }
+  const svgOf = (e, w) => '<svg viewBox="0 0 100 100" aria-hidden="true" style="overflow:hidden">' + e.strokes.map(s => '<path d="' + s.d + '" fill="none" stroke="' + s.c + '" stroke-width="' + (w||5) + '" stroke-linecap="round" stroke-linejoin="round"/>').join('') + '</svg>';
+  const pages = () => Math.max(1, Math.ceil((doodles.length + (doodles.length % N === 0 && doodles.length ? 1 : 0)) / N));
+  function paint(newIdx){
+    const base = page * N;
+    [...grid.children].forEach((c, i) => {
+      const e = doodles[base + i]; c.className = 'cell' + (e ? ' f' : '') + (base + i === doodles.length ? ' next' : '') + (base + i === newIdx ? ' new' : '');
+      c.innerHTML = e ? svgOf(e) : ''; c.setAttribute('aria-label', e ? e.name + '님의 그림' : '빈 칸');
+    });
+    const P = pages(), onPage = Math.min(N, Math.max(0, doodles.length - base));
+    $('#gb-cnt').parentNode.innerHTML = doodles.length ? '<b id="gb-cnt">' + doodles.length + '</b>개의 마음이 모였어요' : '<span class="empty">첫 번째 마음을 그려주세요</span><b id="gb-cnt" hidden></b>'; $('#gb-vol').textContent = 'No.' + String(page + 1).padStart(2, '0'); 
+    $('#gb-pprev').style.visibility = $('#gb-pnext').style.visibility = P > 1 ? 'visible' : 'hidden'; $('#gb-pprev').disabled = page === 0; $('#gb-pnext').disabled = page >= P - 1;
   }
-  function renderGb() {
-    const list = $('#gbList'); list.innerHTML = '';
-    entries.slice(0, 2).forEach((e) => list.appendChild(noteEl(e)));
-    $('#gbEmpty').hidden = entries.length > 0;
-    $('#gbMore').hidden = entries.length <= 2;
+  function go(p, dir){ grid.style.setProperty('--sx', (dir > 0 ? 24 : -24) + 'px'); grid.classList.add('sw'); setTimeout(() => { page = p; paint(-1); grid.style.setProperty('--sx', (dir > 0 ? -24 : 24) + 'px'); requestAnimationFrame(() => grid.classList.remove('sw')); }, 260); }
+  $('#gb-pprev').onclick = () => page > 0 && go(page - 1, -1);
+  $('#gb-pnext').onclick = () => page < pages() - 1 && go(page + 1, 1);
+  function paintTexts(newObj){
+    const all = entries.filter(e => e.msg);
+    if (newObj) { const i = all.findIndex(e => e === newObj || (e.name === newObj.name && e.msg === newObj.msg)); if (i > 0) all.unshift(all.splice(i, 1)[0]); }
+    $('#gb-tl').innerHTML = ''; $('#gb-allc').textContent = all.length + '개';
+    all.forEach((e, i) => { const d = document.createElement('div'); d.className = 'note' + (newObj && i === 0 ? ' new' : '');
+      d.innerHTML = (e.strokes ? '<div class="th">' + svgOf(e, 6) + '</div>' : '') + '<div class="bd"><div class="msg"></div><div class="foot"><span class="w"></span><span class="n"></span></div></div>';
+      d.querySelector('.msg').textContent = e.msg; d.querySelector('.w').textContent = e.when; d.querySelector('.n').textContent = 'From. ' + e.name; $('#gb-tl').appendChild(d); });
   }
-  store.list().then((a) => { entries = a; renderGb(); }).catch(() => {});
-  $('#gbForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const name = $('#gbName').value.trim(), msg = $('#gbMsg').value.trim();
-    if (!name || !msg) { toast('이름과 메시지를 입력해 주세요'); return; }
-    const t = new Date(Date.now() + 9 * 3600e3);
-    const when = t.getUTCFullYear() + '.' + pad(t.getUTCMonth() + 1) + '.' + pad(t.getUTCDate());
-    entries.unshift({ name, msg, when }); renderGb();
-    $('#gbName').value = ''; $('#gbMsg').value = '';
-    toast('축하 메시지를 남겼어요');
-    try { await store.post({ type: 'guestbook', name, msg, when }); } catch (err) {}
-  });
-  const gbModal = $('#gbModal');
-  $('#gbMore').addEventListener('click', () => {
-    const all = $('#gbAll'); all.innerHTML = ''; entries.forEach((e) => all.appendChild(noteEl(e)));
-    gbModal.hidden = false; lockScroll(true); $('#gbClose').focus();
-  });
-  function closeGb() { gbModal.hidden = true; lockScroll(false); $('#gbMore').focus(); }
-  $('#gbClose').addEventListener('click', closeGb);
-  gbModal.addEventListener('click', (e) => { if (e.target === gbModal) closeGb(); });
-  gbModal.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeGb(); });
+  function openAll(newObj){ paintTexts(newObj); $('#gb-all').classList.add('on'); lockScroll(true); $('#gb-tl').scrollTop = 0; }
+  $('#gb-openAll').onclick = () => openAll(null);
+  const closeAll = () => { $('#gb-all').classList.remove('on'); lockScroll(false); };
+  $('#gb-allx').onclick = closeAll;
+  $('#gb-all').addEventListener('click', (ev) => { if (ev.target.id === 'gb-all') closeAll(); });
+  derive(); paint(-1);
+  store.list().then((a) => { entries = (a || []).map((e) => { const s = cleanDrawing(e.drawing); const o = { name: String(e.name || ''), msg: String(e.msg || ''), when: String(e.when || '') }; if (s.length) o.strokes = s; return o; }); derive(); page = 0; paint(-1); }).catch(() => {});
+  grid.addEventListener('click', (ev) => { const c = ev.target.closest('.cell.f'); if (!c) return; const e = doodles[page * N + [...grid.children].indexOf(c)];
+    $('#gb-vsvg').innerHTML = svgOf(e, 4); $('#gb-vmsg').textContent = e.msg; $('#gb-vn').textContent = 'From. ' + e.name; $('#gb-vw').textContent = e.when; $('#gb-view').classList.add('on'); lockScroll(true); });
+  $('#gb-view').addEventListener('click', () => { $('#gb-view').classList.remove('on'); lockScroll(false); });
+  const sheet = $('#gb-sheet'), cv = $('#gb-cv'), ctx = cv.getContext('2d'), pal = $('#gb-pal');
+  let color = 0, strokes = [], redo = [], cur = null;
+  COLORS.forEach(([c, n], i) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'sw'; b.style.background = c; b.style.setProperty('--c', c); b.style.setProperty('--g', c + '88'); b.setAttribute('aria-label', n); b.onclick = () => setColor(i); pal.appendChild(b); });
+  function setColor(i){ color = i; [...pal.children].forEach((b, k) => b.classList.toggle('on', k === i)); $('#gb-ok').style.color = COLORS[i][0]; }
+  function size(){ const r = cv.getBoundingClientRect(), d = window.devicePixelRatio || 1; cv.width = r.width * d; cv.height = r.height * d; draw(); }
+  const pt = (ev) => { const r = cv.getBoundingClientRect(); return [ (ev.clientX - r.left) / r.width * 100, (ev.clientY - r.top) / r.height * 100 ]; };
+  function toD(p){ if (p.length === 1) return 'M' + p[0][0].toFixed(1) + ' ' + p[0][1].toFixed(1) + 'l.1 0';
+    let d = 'M' + p[0][0].toFixed(1) + ' ' + p[0][1].toFixed(1);
+    for (let i = 1; i < p.length - 1; i++) { const mx = (p[i][0] + p[i+1][0]) / 2, my = (p[i][1] + p[i+1][1]) / 2; d += 'Q' + p[i][0].toFixed(1) + ' ' + p[i][1].toFixed(1) + ' ' + mx.toFixed(1) + ' ' + my.toFixed(1); }
+    const l = p[p.length-1]; return d + 'L' + l[0].toFixed(1) + ' ' + l[1].toFixed(1); }
+  function draw(){ const W = cv.width; ctx.clearRect(0, 0, W, cv.height); ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.lineWidth = W * 0.05;
+    strokes.concat(cur ? [cur] : []).forEach(s => { ctx.strokeStyle = s.c; ctx.stroke(new Path2D(s.d.replace(/([\d.]+) ([\d.]+)/g, (m, x, y) => (x * W / 100) + ' ' + (y * W / 100)))); });
+    $('#gb-ph0').style.opacity = strokes.length || cur ? 0 : 1; $('#gb-undo').disabled = !strokes.length; $('#gb-redo').disabled = !redo.length; $('#gb-clear').disabled = !strokes.length;
+    $('#gb-save').textContent = strokes.length ? '포스터에 붙이기' : '글만 남기기'; }
+  // 손떨림 보정: 입력을 부드럽게 따라가고(지연 붓), 끝나면 점을 정리해 곡선을 매끈하게
+  let sm = null;
+  function rdp(p, eps){ if (p.length < 3) return p; const [a, b] = [p[0], p[p.length-1]]; let md = 0, mi = 0; const dx = b[0]-a[0], dy = b[1]-a[1], L = Math.hypot(dx, dy) || 1;
+    for (let i = 1; i < p.length-1; i++) { const d = Math.abs(dy*p[i][0] - dx*p[i][1] + b[0]*a[1] - b[1]*a[0]) / L; if (d > md) { md = d; mi = i; } }
+    return md > eps ? rdp(p.slice(0, mi+1), eps).slice(0, -1).concat(rdp(p.slice(mi), eps)) : [a, b]; }
+  function chaikin(p, n){ for (let k = 0; k < n; k++) { if (p.length < 3) return p; const q = [p[0]]; for (let i = 0; i < p.length-1; i++) { const [a, b] = [p[i], p[i+1]]; q.push([a[0]*.75+b[0]*.25, a[1]*.75+b[1]*.25], [a[0]*.25+b[0]*.75, a[1]*.25+b[1]*.75]); } q.push(p[p.length-1]); p = q; } return p; }
+  cv.addEventListener('pointerdown', (ev) => { cv.setPointerCapture(ev.pointerId); sm = pt(ev); cur = { c: COLORS[color][0], pts: [sm.slice()] }; cur.d = toD(cur.pts); draw(); });
+  cv.addEventListener('pointermove', (ev) => { if (!cur) return; const r = pt(ev); sm = [sm[0] + (r[0]-sm[0]) * .3, sm[1] + (r[1]-sm[1]) * .3]; const l = cur.pts[cur.pts.length-1]; if (Math.hypot(sm[0]-l[0], sm[1]-l[1]) < 0.7) return; cur.pts.push(sm.slice()); cur.d = toD(cur.pts); draw(); });
+  const end = (ev) => { if (!cur) return; if (ev && ev.clientX != null) { const r = pt(ev); if (Math.hypot(r[0]-sm[0], r[1]-sm[1]) > .5) cur.pts.push(r); } const pts = cur.pts.length > 2 ? chaikin(rdp(cur.pts, 0.9), 3) : cur.pts; cur.d = toD(pts); strokes.push({ c: cur.c, d: cur.d }); cur = null; redo = []; draw(); $('#gb-err').textContent = ''; };
+  cv.addEventListener('pointerup', end); cv.addEventListener('pointercancel', end);
+  $('#gb-undo').onclick = () => { if (strokes.length) { redo.push(strokes.pop()); draw(); } };
+  $('#gb-redo').onclick = () => { if (redo.length) { strokes.push(redo.pop()); draw(); } };
+  $('#gb-clear').onclick = () => { redo = strokes.slice().reverse(); strokes = []; draw(); };
+  function open(){ strokes = []; redo = []; $('#gb-nm').value = ''; $('#gb-ms').value = ''; $('#gb-err').textContent = ''; setColor(Math.floor(Math.random() * COLORS.length)); sheet.classList.add('on'); lockScroll(true); requestAnimationFrame(size); }
+  function close(){ sheet.classList.remove('on'); lockScroll(false); }
+  function save(){
+    const name = $('#gb-nm').value.trim(), msg = $('#gb-ms').value.trim();
+    if (!name) { $('#gb-err').textContent = '이름을 적어주세요'; $('#gb-nm').focus(); return; }
+    if (!strokes.length && !msg) { $('#gb-err').textContent = '그림을 그리거나 메시지를 적어주세요'; return; }
+    const t = new Date(Date.now() + 9 * 3600e3), when = t.getUTCFullYear() + '.' + pad(t.getUTCMonth() + 1) + '.' + pad(t.getUTCDate());
+    const item = { name, msg: msg || (strokes.length ? '결혼 축하해요!' : ''), when };
+    if (strokes.length) item.strokes = strokes.slice();
+    entries.unshift(item); derive(); close();
+    store.post({ type: 'guestbook', name, msg: item.msg, when, drawing: item.strokes || null }).catch(() => {});
+    if (!item.strokes) { setTimeout(() => openAll(item), 300); return; }
+    const idx = doodles.length - 1; page = Math.floor(idx / N);
+    setTimeout(() => { paint(idx); grid.children[idx % N].scrollIntoView({ block: 'center', behavior: 'smooth' }); toast('포스터에 그림을 붙였어요'); }, 250);
+  }
+  $('#gb-open').onclick = open; $('#gb-close').onclick = close; $('#gb-ok').onclick = save; $('#gb-save').onclick = save;
+  window.addEventListener('resize', () => { if (sheet.classList.contains('on')) size(); });
+  })();
 
   /* Accounts */
   const icPlus = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/><path class="v" d="M12 5v14"/></svg>';

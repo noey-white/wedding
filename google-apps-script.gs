@@ -11,6 +11,7 @@
  *
  * 시트 탭 '참석'  : 참석 여부 응답이 쌓임
  * 시트 탭 '방명록': 방명록이 쌓임. '숨김' 칸에 아무 글자나 넣으면 청첩장에서 안 보임
+ *                   '그림' 칸에는 손님이 그린 그림 데이터가 들어감 (그림 없이 글만 쓰면 비어 있음)
  */
 
 function sheet_(name, header) {
@@ -32,13 +33,23 @@ function clean_(s, max) {
   return String(s || '').replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, '').slice(0, max);
 }
 
+function guestSheet_() {
+  const sh = sheet_('방명록', ['작성시각', '날짜', '이름', '메시지', '숨김', '그림']);
+  if (!sh.getRange(1, 6).getValue()) sh.getRange(1, 6).setValue('그림');
+  return sh;
+}
+
 function doGet(e) {
   if (e && e.parameter && e.parameter.type === 'guestbook') {
-    const sh = sheet_('방명록', ['작성시각', '날짜', '이름', '메시지', '숨김']);
+    const sh = guestSheet_();
     const rows = sh.getDataRange().getValues().slice(1);
     const entries = rows
       .filter(function (r) { return !r[4]; })
-      .map(function (r) { return { when: String(r[1]), name: String(r[2]), msg: String(r[3]) }; })
+      .map(function (r) {
+        let drawing = null;
+        if (r[5]) { try { drawing = JSON.parse(String(r[5])); } catch (err) { drawing = null; } }
+        return { when: String(r[1]), name: String(r[2]), msg: String(r[3]), drawing: drawing };
+      })
       .reverse();
     return json_({ entries: entries });
   }
@@ -62,8 +73,15 @@ function doPost(e) {
         d.meal === 'yes' ? '식사 예정' : d.meal === 'no' ? '안 함' : d.meal === 'tbd' ? '미정' : ''
       ]);
     } else if (d.type === 'guestbook') {
-      const sh = sheet_('방명록', ['작성시각', '날짜', '이름', '메시지', '숨김']);
-      sh.appendRow([now, clean_(d.when, 12), clean_(d.name, 20), clean_(d.msg, 300), '']);
+      const sh = guestSheet_();
+      let drawing = '';
+      if (d.drawing && Array.isArray(d.drawing)) {
+        const safe = d.drawing.slice(0, 200).map(function (s) {
+          return { c: String(s.c || '').slice(0, 9), d: String(s.d || '').replace(/[^MLQl0-9. -]/g, '').slice(0, 8000) };
+        });
+        drawing = JSON.stringify(safe).slice(0, 45000);
+      }
+      sh.appendRow([now, clean_(d.when, 12), clean_(d.name, 20), clean_(d.msg, 300), '', drawing]);
     }
     return json_({ ok: true });
   } finally {
