@@ -640,6 +640,7 @@ html.intro-on,html.intro-on body{overflow:hidden !important;background:#2B2725}
     <button type="button" id="linkBtn" style="flex:1;min-height:52px;border:1px solid #555;border-radius:999px;background:transparent;color:#fff;font-size:14px;font-weight:700">링크 복사</button>
   </div>
   <div style="display:flex;justify-content:space-between;margin-top:52px;padding-top:16px;border-top:1px solid #333;font-size:11px;letter-spacing:.16em;color:var(--mute)"><span>JOOHYUN &amp; JIYEON</span><span>2027. 12. 12</span></div>
+  <div style="margin-top:14px;font-size:10px;letter-spacing:.1em;color:#5E5E5B">♬MUSIC - <a href="https://www.youtube.com/watch?v=wJ2J7Gs0AmA" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:2px">YULDAU PIANO</a></div>
   </div>
 </section>
 
@@ -810,9 +811,22 @@ const CONFIG = {
     if (document.hidden) { if (!audio.paused) { bgmBg = true; audio.pause(); } }
     else if (bgmBg && bgmOn) { bgmBg = false; const p = audio.play(); if (p) p.catch(() => {}); }
   });
-  const firstTouch = () => { if (bgmOn && audio.paused) { const p = audio.play(); if (p) p.catch(() => {}); } };
-  document.addEventListener('click', firstTouch, { once: true, capture: true });
-  document.addEventListener('touchend', firstTouch, { once: true, capture: true });
+  const startBgm = () => { if (!bgmOn) return; try { audio.currentTime = 0; } catch (e) {} const p = audio.play(); if (p) p.catch(() => {}); };
+  if (document.getElementById('intro')) {
+    // with the letter intro: unlock audio on the envelope tap (mobile needs a tap), start when the main screen begins
+    const unlock = () => {
+      audio.muted = true; const p = audio.play();
+      const done = () => { audio.pause(); try { audio.currentTime = 0; } catch (e) {} audio.muted = false; };
+      if (p) p.then(done).catch(() => { audio.muted = false; }); else done();
+    };
+    document.addEventListener('click', unlock, { once: true, capture: true });
+    document.addEventListener('touchend', unlock, { once: true, capture: true });
+    document.addEventListener('intro:done', startBgm, { once: true });
+  } else {
+    const firstTouch = () => { if (audio.paused) startBgm(); };
+    document.addEventListener('click', firstTouch, { once: true, capture: true });
+    document.addEventListener('touchend', firstTouch, { once: true, capture: true });
+  }
 
   /* data store */
   const store = {
@@ -1081,6 +1095,7 @@ function letterIntro(root) {
   function toMain() {
     if (li.classList.contains('main')) return;
     li.classList.add('main'); T.forEach(clearTimeout);
+    document.dispatchEvent(new Event('intro:done'));
     const ov = root.querySelector('#intro');
     setTimeout(() => { ov.classList.add('gone'); document.documentElement.classList.remove('intro-on'); }, 350);
     setTimeout(() => ov.remove(), 1300);
