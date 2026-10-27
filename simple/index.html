@@ -264,7 +264,7 @@ html.intro-on,html.intro-on body{overflow:hidden !important;background:#2B2725}
 #intro .li.t1 .dots i:nth-child(1),#intro .li.t2 .dots i:nth-child(-n+2),#intro .li.t3 .dots i{background:var(--hd);transform:scale(1.2)}
 #intro .fh{position:absolute;left:50%;top:50%;width:28px;height:27px;margin:-70px 0 0 -14px;pointer-events:none;z-index:8;opacity:0;filter:drop-shadow(0 3px 4px rgba(var(--shc),.25));animation:LfloatUp 1.6s cubic-bezier(.2,.6,.3,1) forwards}
 @keyframes LfloatUp{0%{opacity:0;transform:translate(0,0) scale(.4) rotate(0)}15%{opacity:1}100%{opacity:0;transform:translate(var(--dx),-180px) scale(var(--sc)) rotate(var(--rt))}}
-#intro .skipb{display:block;margin:26px auto 0;font:500 10px SUIT,sans-serif;letter-spacing:.24em;color:rgba(244,237,227,.32);background:none;border:0;padding:8px 12px;cursor:pointer}
+#intro .skipb{display:block;margin:42px auto 0;font:500 10px SUIT,sans-serif;letter-spacing:.24em;color:rgba(244,237,227,.32);background:none;border:0;padding:8px 12px;cursor:pointer}
 #intro .li.letter .skipb,#intro .li.main .skipb{display:none}
 #intro .paper .pheart{opacity:0}
 #intro .li.t3 .paper .pheart{opacity:1;transition:opacity .4s .25s,transform .6s ease}
@@ -454,7 +454,7 @@ html.intro-on,html.intro-on body{overflow:hidden !important;background:#2B2725}
         </div>
       </div>
     </div>
-    <div class="hint">편지를 눌러 열어보세요!<div class="dots"><i></i><i></i><i></i></div><button class="skipb" id="skipb" type="button">SKIP</button></div>
+    <div class="hint">편지를 눌러 열어보세요!<button class="skipb" id="skipb" type="button">SKIP</button></div>
     <div id="hearts"></div>
   </div>
 </div>
@@ -1074,9 +1074,10 @@ function letterIntro(root) {
     at(3700, toMain);
   }
   env.addEventListener('click', () => {
-    if (taps >= 3 || !li.classList.contains('in')) return;
-    taps++; li.classList.add('t' + taps); shake(); ripple(taps === 3); burst(taps === 3 ? 5 : taps + 1, 90 + taps * 30);
-    if (taps === 3) openAll();
+    if (taps || !li.classList.contains('in')) return;
+    taps = 1; li.classList.add('t1'); shake(); ripple(true); burst(5, 150);
+    at(130, () => li.classList.add('t2'));
+    at(280, () => { li.classList.add('t3'); openAll(); });
   });
   root.querySelector('#skipb').addEventListener('click', () => { T.forEach(clearTimeout); toMain(); });
   function reset() {
