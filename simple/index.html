@@ -846,7 +846,7 @@ const CONFIG = {
 
   /* Guestbook: 그림 포스터 + 글 방명록 */
   (function () {
-  const COLORS = [["#FFFFFF", "화이트"], ["#D8C1A2", "베이지"], ["#F2C2CB", "연핑크"], ["#E2768F", "진핑크"]];
+  const COLORS = [["#F4EDE3", "아이보리"], ["#D8C1A2", "베이지"], ["#F2C2CB", "연핑크"], ["#E2768F", "진핑크"]];
   let entries = [];   // 최신순. 그림이 있으면 strokes 를 가짐
   const okColor = (c) => /^#[0-9a-fA-F]{3,8}$/.test(c), okPath = (d) => typeof d === 'string' && /^[MLQl0-9. -]+$/.test(d) && d.length < 9000;
   const cleanDrawing = (dr) => Array.isArray(dr) ? dr.filter((s) => s && okColor(s.c) && okPath(s.d)).map((s) => ({ c: s.c, d: s.d })) : [];
