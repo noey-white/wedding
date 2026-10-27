@@ -46,15 +46,15 @@ img{max-width:100%}
 
 /* cover (calendar) */
 @font-face{font-family:'ChosunKm';src:url(../assets/fonts/ChosunKm-12.woff2) format('woff2');font-display:block}
-.cv{--ac:#E2768F;position:relative;width:100%;max-width:430px;height:100vh;height:100svh;min-height:760px;max-height:900px;margin:0 auto;overflow:hidden;background-color:#F6F2EA;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .3  0 0 0 0 .25  0 0 0 0 .2  0 0 0 .5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/></svg>");font-family:'SUIT',sans-serif;color:#2B2725}
+.cv{--ac:#E2768F;position:relative;width:100%;max-width:430px;height:100vh;height:100svh;min-height:760px;max-height:900px;margin:0 auto;overflow:hidden;background-color:#F4F2EE;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .28  0 0 0 0 .265  0 0 0 0 .25  0 0 0 .5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/></svg>");font-family:'SUIT',sans-serif;color:#2B2725}
 .cv *{box-sizing:border-box}
 .cv .cv-cal{position:absolute;left:50%;top:50%;width:1400px;height:1800px;margin:-942px 0 0 -700px}
 .cv .sk{position:absolute;inset:0;overflow:visible;pointer-events:none;fill:none;stroke-linecap:round}
 .cv .sk .g{stroke:#2B2725;stroke-width:1.05;opacity:.46}
 .cv .sk .cv-c path{stroke:#2B2725;stroke-dasharray:1;stroke-dashoffset:0;animation:cvDraw .55s cubic-bezier(.5,0,.4,1) backwards}
 @keyframes cvGIn{from{opacity:0}}
-.cv .day{position:absolute;left:537px;top:647px;width:326px;height:506px;padding:14px 16px 16px;background:rgba(253,251,247,.9);animation:cvLit 1.8s ease 1.2s backwards}
-@keyframes cvLit{from{background:rgba(253,251,247,0)}}
+.cv .day{position:absolute;left:537px;top:647px;width:326px;height:506px;padding:14px 16px 16px;background:rgba(252,251,249,.9);animation:cvLit 1.8s ease 1.2s backwards}
+@keyframes cvLit{from{background:rgba(252,251,249,0)}}
 .cv .dh{position:relative;height:92px}
 .cv .d12{position:absolute;font-synthesis:style;font-family:'ChosunKm',serif;font-size:42px;line-height:1;white-space:nowrap;animation:cvFadeIn .7s ease .9s backwards;font-style:italic}
 .cv .d12 .m{margin-right:.36em}
@@ -98,7 +98,7 @@ img{max-width:100%}
 .cv .ft.e4 .dt{color:var(--ac)}
 .cv .top{position:absolute;left:18px;right:18px;top:16px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;z-index:5;animation:cvFadeIn .8s ease .2s backwards}
 .cv .tinv{font-size:11px;font-weight:500;letter-spacing:.42em;text-transform:uppercase;padding-left:.42em;color:#2B2725}
-.cv .dday{justify-self:end;font-size:11.5px;font-weight:700;letter-spacing:.04em;border-radius:999px;padding:6px 12px;background:#2B2725;color:#F6F2EA}
+.cv .dday{justify-self:end;font-size:11.5px;font-weight:700;letter-spacing:.04em;border-radius:999px;padding:6px 12px;background:#2B2725;color:#F4F2EE}
 @keyframes cvFadeIn{from{opacity:0}}
 @keyframes cvUp{from{opacity:0;transform:translateY(8px)}}
 @keyframes cvDraw{from{stroke-dashoffset:1}}
@@ -109,6 +109,10 @@ img{max-width:100%}
 html.intro-on .cv,html.intro-on .cv *{animation-play-state:paused !important}
 @media (prefers-reduced-motion:reduce){.cv,.cv *{animation:none !important}}
 
+.cut{position:relative;height:0;z-index:3}
+.cut::before{content:'';position:absolute;left:18px;right:18px;top:-1px;border-top:1.5px dashed rgba(43,39,37,.32)}
+.cut i{position:absolute;top:-10px;width:20px;height:20px;border-radius:50%;background:#E9E7E2;box-shadow:inset 0 1px 2px rgba(43,39,37,.12)}
+.cut i:first-child{left:-10px}.cut i:last-child{right:-10px}
 /* gallery */
 .cg{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:46px;gap:3px}
 .g1{grid-column:1/5;grid-row:1/6}.g2{grid-column:5/7;grid-row:1/4}.g3{grid-column:5/7;grid-row:4/6}
@@ -486,8 +490,10 @@ html.intro-on,html.intro-on body{overflow:hidden !important;background:#2B2725}
   </div>
 </section>
 
+<div class="cut" aria-hidden="true"><i></i><i></i></div>
+
 <!-- 01 INVITATION -->
-<section style="padding:80px 28px 84px;border-top:1px solid var(--line)">
+<section style="padding:80px 28px 84px">
   <div class="sh rv"><div class="no">01 · INVITATION</div><h2>초대합니다<svg class="h2ico" width="34" height="26" viewBox="0 0 34 26" aria-hidden="true"><rect x="1" y="2" width="32" height="22" rx="4" fill="#F3E9DE" stroke="#D8C1A2" stroke-width="1"/><path d="M2.5 4.5 15 14a3.2 3.2 0 0 0 4 0L31.5 4.5" fill="none" stroke="#D8C1A2" stroke-width="1.2" stroke-linejoin="round"/><path d="M2.5 23 13 14.5M31.5 23 21 14.5" fill="none" stroke="#E6D6C4" stroke-width="1"/><path d="M17 17.6c-2.6-1.8-4-3-4-4.6 0-1.1.9-2 2-2 .8 0 1.5.4 2 1.1.5-.7 1.2-1.1 2-1.1 1.1 0 2 .9 2 2 0 1.6-1.4 2.8-4 4.6z" fill="#E2768F"/></svg></h2><div class="ln"></div></div>
   <p class="rv write" style="margin:40px 0 0;text-align:center;font-family:'Shine',cursive;font-size:25px;line-height:1.55"><span class="wl wl1">때론 <span style="color:#D97F90">오래된 친구</span>처럼,</span><span class="wl wl2">때론 <span style="color:#D97F90">처음 만나는 사람</span>처럼</span><span class="wl wl3">그 많은 당신을 다 <span style="color:#D97F90">사랑</span>하고 싶습니다.</span></p>
   <div class="rva" style="text-align:center;font-size:12px;color:var(--mute);margin-top:14px">「사랑고백」, 이준호</div>
