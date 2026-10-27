@@ -679,7 +679,7 @@ html.intro-on,html.intro-on body{overflow:hidden !important;background:#2B2725}
 </div>
 
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
-<audio id="bgm" src="../assets/bgm.mp3" loop preload="none"></audio>
+<audio id="bgm" src="../assets/bgm.mp3" loop preload="metadata"></audio>
 
 <script>
 /* ============ 설정: 여기만 바꾸면 돼요 ============ */
@@ -801,9 +801,15 @@ const CONFIG = {
   function setBgm(on) {
     bgmOn = on; bgmBtn.classList.toggle('on', on); bgmBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
     bgmBtn.setAttribute('aria-label', on ? '배경 음악 끄기' : '배경 음악 켜기');
-    if (on) { const p = audio.play(); if (p) p.catch(() => {}); } else audio.pause();
+    if (on) { try { audio.currentTime = 0; } catch (e) {} const p = audio.play(); if (p) p.catch(() => {}); } else audio.pause();
   }
   bgmBtn.addEventListener('click', (e) => { e.stopPropagation(); setBgm(!bgmOn); });
+  // pause while the page is in the background (e.g. user switches away from KakaoTalk), resume when back
+  let bgmBg = false;
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { if (!audio.paused) { bgmBg = true; audio.pause(); } }
+    else if (bgmBg && bgmOn) { bgmBg = false; const p = audio.play(); if (p) p.catch(() => {}); }
+  });
   const firstTouch = () => { if (bgmOn && audio.paused) { const p = audio.play(); if (p) p.catch(() => {}); } };
   document.addEventListener('click', firstTouch, { once: true, capture: true });
   document.addEventListener('touchend', firstTouch, { once: true, capture: true });
