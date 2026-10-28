@@ -13,6 +13,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="https://noey-white.github.io/wedding/simple/">
 <meta name="theme-color" content="#FFFFFF">
+<link rel="preload" as="image" href="../assets/heart.webp">
 <style>
 @font-face{font-family:'Shine';src:url(../assets/fonts/Cafe24Shiningstar.woff2) format('woff2');font-weight:400;font-display:swap}
 @font-face{font-family:'SUIT';src:url(../assets/fonts/SUIT-Regular.woff2) format('woff2');font-weight:400;font-display:swap}
@@ -222,6 +223,7 @@ html.intro-on,html.intro-on body{overflow:hidden !important;background:#2B2725}
 #intro .paper{position:absolute;left:17px;right:17px;top:12px;height:134px;border-radius:9px;background:linear-gradient(180deg,#FFFFFF,#FAF6F0);box-shadow:0 1px 4px rgba(var(--shc),.18);z-index:2;transition:transform .8s cubic-bezier(.3,1.15,.4,1) .3s;text-align:center;overflow:hidden}
 #intro .paper .pheart{position:absolute;left:50%;top:44px;width:62px;height:60px;margin-left:-31px;transition:opacity .4s,transform .5s;filter:drop-shadow(0 3px 4px rgba(var(--shc),.25))}
 #intro .paper .pheart svg,#intro .seal svg,#intro .fh svg{width:100%;height:100%;display:block;overflow:visible}
+#intro .paper .pheart img,#intro .seal img,#intro .fh img{width:100%;height:100%;display:block;-webkit-user-drag:none;user-select:none;pointer-events:none}
 #intro .paper .txt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity .9s ease .35s}
 #intro .paper .t1{font-family:'Shine',cursive;font-size:22px;line-height:1.05;letter-spacing:.01em}
 #intro .paper .t1 em{font-style:normal;color:#E39AA6}
@@ -401,25 +403,7 @@ html.intro-on,html.intro-on body{overflow:hidden !important;background:#2B2725}
         <div class="env" id="env" role="button" aria-label="편지 열기">
           <svg class="part back" viewBox="0 0 230 156"><defs><linearGradient id="gb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--b1)"/><stop offset="1" style="stop-color:var(--b2)"/></linearGradient></defs><rect x="0" y="0" width="230" height="156" rx="16" fill="url(#gb)"/></svg>
           <div class="paper">
-            <div class="pheart"><svg viewBox="-6 -6 112 104" aria-hidden="true"><defs>
-<linearGradient id="hbp" x1="0.2" y1="0" x2="0.55" y2="1"><stop offset="0" style="stop-color:var(--h0)"/><stop offset=".5" style="stop-color:var(--h1)"/><stop offset="1" style="stop-color:var(--h2)"/></linearGradient>
-<filter id="hvp" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
-<feGaussianBlur in="SourceAlpha" stdDeviation="5.5" result="b"/>
-<feOffset in="b" dx="-3.5" dy="-5" result="o1"/><feComposite in="SourceAlpha" in2="o1" operator="out" result="e1"/>
-<feFlood style="flood-color:var(--hs)" flood-opacity=".75"/><feComposite in2="e1" operator="in" result="shade"/>
-<feOffset in="b" dx="3" dy="4.5" result="o2"/><feComposite in="SourceAlpha" in2="o2" operator="out" result="e2"/>
-<feFlood flood-color="#fff" flood-opacity=".55"/><feComposite in2="e2" operator="in" result="lit"/>
-<feGaussianBlur in="shade" stdDeviation="2.2" result="shade2"/><feGaussianBlur in="lit" stdDeviation="1.6" result="lit2"/>
-<feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="shade2"/><feMergeNode in="lit2"/></feMerge>
-<feComposite in2="SourceAlpha" operator="in"/>
-</filter>
-<filter id="hgp" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
-<filter id="hg2p" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1"/></filter>
-<clipPath id="hcp"><path d="M50 87.5C44 84 5.5 60.5 4 32.5 3 15 15.5 3.5 29.5 3.5c9.5 0 16.5 5.5 20.5 12.5 4-7 11-12.5 20.5-12.5 14 0 26.5 11.5 25.5 29C94.5 60.5 56 84 50 87.5z"/></clipPath></defs>
-<g transform="rotate(0 50 46)"><g filter="url(#hvp)"><path d="M50 87.5C44 84 5.5 60.5 4 32.5 3 15 15.5 3.5 29.5 3.5c9.5 0 16.5 5.5 20.5 12.5 4-7 11-12.5 20.5-12.5 14 0 26.5 11.5 25.5 29C94.5 60.5 56 84 50 87.5z" fill="url(#hbp)"/></g>
-<g clip-path="url(#hcp)"><ellipse cx="27" cy="20" rx="13" ry="7.5" fill="#fff" opacity=".55" filter="url(#hgp)" transform="rotate(-32 27 20)"/>
-<ellipse cx="76" cy="15" rx="5" ry="2.6" fill="#fff" opacity=".85" filter="url(#hg2p)" transform="rotate(28 76 15)"/>
-<ellipse cx="22" cy="52" rx="2.2" ry="5.5" fill="#fff" opacity=".35" filter="url(#hg2p)" transform="rotate(-12 22 52)"/></g></g></svg></div>
+            <div class="pheart"><img src="../assets/heart.webp" alt="" draggable="false"></div>
             <div class="txt">
               <div class="t1">Our <em>forever</em> begins<em>.</em></div>
               <div class="ln"></div>
@@ -432,25 +416,7 @@ html.intro-on,html.intro-on body{overflow:hidden !important;background:#2B2725}
 <path d="M10 154 L104 96 Q115 89 126 96 L220 154 Q218 156 214 156 H16 Q12 156 10 154 Z" fill="url(#gt)"/>
 <path d="M0 22 L101 92 Q115 101 129 92 L230 22 V140 Q230 156 214 156 H16 Q0 156 0 140 Z" fill="url(#gg)"/></svg>
           <div class="flap"><svg class="fout" viewBox="0 0 230 100"><defs><linearGradient id="gf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--f1)"/><stop offset="1" style="stop-color:var(--f2)"/></linearGradient></defs><path d="M0 14 Q0 0 16 0 H214 Q230 0 230 14 V27 L132 95 Q115 105 98 95 L0 27 Z" fill="url(#gf)"/><path d="M8 4 H222" stroke="#fff" stroke-opacity=".14" stroke-width="2" stroke-linecap="round"/></svg><svg class="fin" viewBox="0 0 230 100"><path d="M0 14 Q0 0 16 0 H214 Q230 0 230 14 V27 L132 95 Q115 105 98 95 L0 27 Z" style="fill:var(--fi)"/></svg></div>
-          <div class="seal"><svg viewBox="-6 -6 112 104" aria-hidden="true"><defs>
-<linearGradient id="hbs" x1="0.2" y1="0" x2="0.55" y2="1"><stop offset="0" style="stop-color:var(--h0)"/><stop offset=".5" style="stop-color:var(--h1)"/><stop offset="1" style="stop-color:var(--h2)"/></linearGradient>
-<filter id="hvs" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
-<feGaussianBlur in="SourceAlpha" stdDeviation="5.5" result="b"/>
-<feOffset in="b" dx="-3.5" dy="-5" result="o1"/><feComposite in="SourceAlpha" in2="o1" operator="out" result="e1"/>
-<feFlood style="flood-color:var(--hs)" flood-opacity=".75"/><feComposite in2="e1" operator="in" result="shade"/>
-<feOffset in="b" dx="3" dy="4.5" result="o2"/><feComposite in="SourceAlpha" in2="o2" operator="out" result="e2"/>
-<feFlood flood-color="#fff" flood-opacity=".55"/><feComposite in2="e2" operator="in" result="lit"/>
-<feGaussianBlur in="shade" stdDeviation="2.2" result="shade2"/><feGaussianBlur in="lit" stdDeviation="1.6" result="lit2"/>
-<feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="shade2"/><feMergeNode in="lit2"/></feMerge>
-<feComposite in2="SourceAlpha" operator="in"/>
-</filter>
-<filter id="hgs" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
-<filter id="hg2s" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1"/></filter>
-<clipPath id="hcs"><path d="M50 87.5C44 84 5.5 60.5 4 32.5 3 15 15.5 3.5 29.5 3.5c9.5 0 16.5 5.5 20.5 12.5 4-7 11-12.5 20.5-12.5 14 0 26.5 11.5 25.5 29C94.5 60.5 56 84 50 87.5z"/></clipPath></defs>
-<g transform="rotate(0 50 46)"><g filter="url(#hvs)"><path d="M50 87.5C44 84 5.5 60.5 4 32.5 3 15 15.5 3.5 29.5 3.5c9.5 0 16.5 5.5 20.5 12.5 4-7 11-12.5 20.5-12.5 14 0 26.5 11.5 25.5 29C94.5 60.5 56 84 50 87.5z" fill="url(#hbs)"/></g>
-<g clip-path="url(#hcs)"><ellipse cx="27" cy="20" rx="13" ry="7.5" fill="#fff" opacity=".55" filter="url(#hgs)" transform="rotate(-32 27 20)"/>
-<ellipse cx="76" cy="15" rx="5" ry="2.6" fill="#fff" opacity=".85" filter="url(#hg2s)" transform="rotate(28 76 15)"/>
-<ellipse cx="22" cy="52" rx="2.2" ry="5.5" fill="#fff" opacity=".35" filter="url(#hg2s)" transform="rotate(-12 22 52)"/></g></g></svg></div>
+          <div class="seal"><img src="../assets/heart.webp" alt="" draggable="false"></div>
           <div class="badge">1</div>
         </div>
       </div>
@@ -1078,7 +1044,7 @@ function letterIntro(root) {
   function burst(n, spread) {
     for (let i = 0; i < n; i++) {
       const h = document.createElement('div'); h.className = 'fh';
-      h.innerHTML = HEART.replace(/\b(hg2|hb|hv|hg|hc)s\b/g, '$1' + Math.random().toString(36).slice(2, 7));
+      h.innerHTML = HEART;
       h.style.setProperty('--dx', ((Math.random() - .5) * spread) + 'px');
       h.style.setProperty('--sc', (0.8 + Math.random() * 0.7).toFixed(2));
       h.style.setProperty('--rt', ((Math.random() - .5) * 50) + 'deg');
